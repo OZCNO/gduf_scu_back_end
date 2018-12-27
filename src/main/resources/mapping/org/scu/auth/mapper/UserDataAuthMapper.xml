@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.scu.auth.mapper.UserDataAuthMapper">
+
+  <sql id="allFields">
+    id,
+    user_id userId,
+    target_type targetType,
+    target_id targetId,
+    role,
+    create_time createTime,
+    update_time updateTime
+  </sql>
+
+  <select id="getByUserTarget" resultType="org.scu.auth.entity.UserDataAuth" parameterType="org.scu.auth.vo.QUserDataAuth">
+    SELECT
+    <include refid="allFields"/>
+    FROM
+      user_data_auth
+    WHERE
+       user_id = #{userId}
+      AND target_type = #{targetType}
+      AND target_id = #{targetId}
+  </select>
+
+  <select id="filterTargetIds" resultType="java.lang.Long" parameterType="org.scu.auth.vo.QUserMultiDataAuth">
+    SELECT
+      target_id
+    FROM
+    user_data_auth
+    WHERE
+    user_id = #{userId}
+    AND target_type = #{targetType}
+    AND target_id  in
+    <foreach item="id" collection="targetIds" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+    <if test="role != null">
+    AND role = #{role}
+    </if>
+  </select>
+
+  <insert id="insert" parameterType="org.scu.auth.entity.UserDataAuth" useGeneratedKeys="true" keyProperty="id">
+    insert into user_data_auth
+    (
+      user_id,
+      target_type,
+      target_id,
+      role,
+      create_time,
+      update_time
+    )
+    VALUES
+    (
+      #{userId},
+      #{targetType},
+      #{targetId},
+      #{role},
+      #{createTime},
+      #{updateTime}
+    )
+  </insert>
+</mapper>
