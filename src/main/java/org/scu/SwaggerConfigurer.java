@@ -28,20 +28,31 @@ public class SwaggerConfigurer {
 
   public static final String SWAGGER_SCAN_PACKAGE_USER = "org.scu.user";
 
-  @Bean
-  public Docket createUserRestApi() {
-    return createRestApi("user", SWAGGER_SCAN_PACKAGE_USER);
-  }
+//  @Bean
+//  public Docket createUserRestApi() {
+//    return createRestApi("user", SWAGGER_SCAN_PACKAGE_USER);
+//  }
+//
+//  public Docket createRestApi(String groupName, String basePackage) {
+//    return new Docket(DocumentationType.SWAGGER_2).globalOperationParameters(setHeaderToken())
+//                                                  .apiInfo(apiInfo())
+//                                                  .groupName(groupName)
+//                                                  .select()
+//                                                  .apis(RequestHandlerSelectors.basePackage(
+//                                                    basePackage))
+//                                                  .paths(PathSelectors.any())
+//                                                  .build();
+//  }
 
-  public Docket createRestApi(String groupName, String basePackage) {
-    return new Docket(DocumentationType.SWAGGER_2).globalOperationParameters(setHeaderToken())
-                                                  .apiInfo(apiInfo())
-                                                  .groupName(groupName)
-                                                  .select()
-                                                  .apis(RequestHandlerSelectors.basePackage(
-                                                    basePackage))
-                                                  .paths(PathSelectors.any())
-                                                  .build();
+  @Bean
+  public Docket createRestApi() {
+    return new Docket(DocumentationType.SWAGGER_2)
+        .globalOperationParameters(setHeaderToken())
+        .apiInfo(apiInfo())
+        .select()
+        .apis(RequestHandlerSelectors.basePackage("org.scu"))
+        .paths(PathSelectors.any())
+        .build();
   }
 
   private ApiInfo apiInfo() {

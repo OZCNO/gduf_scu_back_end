@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.scu.student.mapper.StudentMapper">
+
+  <insert id="insert"  useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO `student`
+    (
+    <trim suffixOverrides=",">
+      <if test="id!=null">
+        `id`,
+      </if>
+      <if test="name!=null">
+        `name`,
+      </if>
+      <if test="sex!=null">
+        `sex`,
+      </if>
+      <if test="majorId!=null">
+        `major_id`,
+      </if>
+      <if test="email!=null">
+        `email`,
+      </if>
+      <if test="userId!=null">
+        `user_id`,
+      </if>
+      <if test="avatar!=null">
+        `avatar`,
+      </if>
+      <if test="createTime!=null">
+        `create_time`,
+      </if>
+      <if test="updateTime!=null">
+        `update_time`,
+      </if>
+    </trim>
+    )
+    VALUES
+    (
+    <trim suffixOverrides=",">
+      <if test="id!=null">
+        #{id},
+      </if>
+      <if test="name!=null">
+        #{name},
+      </if>
+      <if test="sex!=null">
+        #{sex},
+      </if>
+      <if test="majorId!=null">
+        #{majorId},
+      </if>
+      <if test="email!=null">
+        #{email},
+      </if>
+      <if test="userId!=null">
+        #{userId},
+      </if>
+      <if test="avatar!=null">
+        #{avatar},
+      </if>
+      <if test="createTime!=null">
+        #{createTime},
+      </if>
+      <if test="updateTime!=null">
+        #{updateTime},
+      </if>
+    </trim>
+    )
+  </insert>
+
+  <update id="update">
+    UPDATE `student`
+    SET
+    <trim suffixOverrides=",">
+      <if test="name != null and name!=''">
+        `name` = #{name},
+      </if>
+      <if test="sex != null and sex!=''">
+        `sex` = #{sex},
+      </if>
+      <if test="majorId != null">
+        `major_id` = #{majorId},
+      </if>
+      <if test="email != null and email!=''">
+        `email` = #{email},
+      </if>
+      <if test="userId != null">
+        `user_id` = #{userId},
+      </if>
+      <if test="avatar != null and avatar!=''">
+        `avatar` = #{avatar},
+      </if>
+      <if test="createTime != null">
+        `create_time` = #{createTime},
+      </if>
+      <if test="updateTime != null">
+        `update_time` = #{updateTime},
+      </if>
+    </trim>
+    WHERE
+    <trim suffixOverrides="and">
+      `id` = #{id} and
+    </trim>
+  </update>
+
+  <resultMap type="." id="StudentMap">
+    <result property="id" column="id"/>
+    <result property="name" column="name"/>
+    <result property="sex" column="sex"/>
+    <result property="majorId" column="major_id"/>
+    <result property="email" column="email"/>
+    <result property="userId" column="user_id"/>
+    <result property="avatar" column="avatar"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateTime" column="update_time"/>
+  </resultMap>
+
+
+  <select id="listClubVips" parameterType="org.scu.student.vo.QStudent" resultMap="StudentMap">
+    select
+    <include refid="allResult"></include>
+    from student
+    where
+    1=1
+    <if test="name != null and name!=''">
+      AND `name` = #{name},
+    </if>
+    limit #{startRecord}, #{endRecord}
+  </select>
+
+  <sql id="allResult">
+    <trim suffixOverrides=",">
+      student.`id`,
+      student.`name`,
+
+    </trim>
+  </sql>
+
+</mapper>

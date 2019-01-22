@@ -24,7 +24,7 @@ public class UserController extends BaseController {
   @Autowired
   private UserService userService;
 
-  @Log(module = LogConstants.User.MODULE, action = LogConstants.User.ACTION_MODIFY_PASSWORD)
+//  @Log(module = LogConstants.User.MODULE, action = LogConstants.User.ACTION_MODIFY_PASSWORD)
   @RequestMapping(value = "user/password", method = RequestMethod.POST)
   public BaseResponse modifyPass(@RequestBody ModifyPasswordReq req,  HttpServletRequest request) {
     User loginUser = getLoginUser(request);

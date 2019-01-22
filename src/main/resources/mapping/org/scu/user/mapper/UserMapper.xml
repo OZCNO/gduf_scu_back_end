@@ -1,60 +1,67 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.scu.user.mapper.UserMapper">
 
   <sql id="allFields">
       id,
-      `name`,
+      username,
       password,
-      supervisor_id supervisorId,
       role
   </sql>
 
   <select id="list" parameterType="org.scu.user.vo.QUser" resultType="org.scu.user.entity.User">
     select
-      <include refid="allFields"/>
+    <include refid="allFields"/>
     FROM
-      `user`
+    `user`
     WHERE
-      1=1
-    <if test="name != null and name != ''">
-    AND `name` like concat(concat('%',#{name}),'%')
+    1=1
+    <if test="username != null and username != ''">
+      AND `username` = #{username}
+    </if>
+    <if test="role != null">
+      AND role = #{role}
     </if>
     limit #{startRecord}, #{endRecord}
   </select>
 
   <select id="count" parameterType="org.scu.user.vo.QUser" resultType="long">
     select
-      count(1)
+    count(1)
     FROM
-      `user`
+    `user`
     WHERE
     1=1
-    <if test="name != null and name != ''">
-      AND `name` like concat(concat('%',#{name}),'%')
+    <if test="username != null and username != ''">
+      AND username = #{username}
+    </if>
+    <if test="role != null">
+      AND role = #{role}
     </if>
   </select>
 
   <select id="getById" parameterType="long" resultType="org.scu.user.entity.User">
     SELECT
-      <include refid="allFields"/>
+    <include refid="allFields"/>
     FROM
-      `user`
+    `user`
     WHERE
-      id = #{id}
+    id = #{id}
   </select>
 
-  <insert id="insert" parameterType="org.scu.user.entity.User" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insert" parameterType="org.scu.user.entity.User" useGeneratedKeys="true"
+    keyProperty="id">
     INSERT INTO `user`
     (
-      `name`,
+      username,
       password,
       supervisor_id,
       role
     )
     VALUES
     (
-      #{name},
+      #{username},
       #{password},
       #{supervisorId},
       #{role}
@@ -65,7 +72,7 @@
     UPDATE
       `user`
     SET
-      `name` = #{name},
+      username = #{username},
       password = #{password},
       supervisor_id = #{supervisorId},
       role = #{role}
@@ -84,15 +91,14 @@
   <select id="getAll" parameterType="org.scu.user.vo.QUser" resultType="org.scu.user.entity.User">
     select
     id,
-    `name`,
-    supervisor_id supervisorId,
+    username,
     role
     FROM
     `user`
     WHERE
     1=1
-    <if test="name != null and name != ''">
-      AND `name` like concat(concat('%',#{name}),'%')
+    <if test="username != null and username != ''">
+      AND username like concat(concat('%',#{username}),'%')
     </if>
     <if test="id != null">
       AND id = #{id}

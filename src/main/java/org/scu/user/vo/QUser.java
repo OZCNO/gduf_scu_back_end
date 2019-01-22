@@ -1,6 +1,7 @@
 package org.scu.user.vo;
 
 import org.scu.base.vo.Pagination;
+import org.scu.user.conf.UserRole;
 
 /**
  * Created by Lamm on 2018/12/19.
@@ -9,9 +10,11 @@ public class QUser extends Pagination {
 
   private Long id;
 
-  private String name;
+  private String username;
 
   private String password;
+
+  private int role;
 
   public String getPassword() {
     return password;
@@ -21,12 +24,12 @@ public class QUser extends Pagination {
     this.password = password;
   }
 
-  public String getName() {
-    return name;
+  public String getUsername() {
+    return username;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
   public Long getId() {
@@ -36,4 +39,13 @@ public class QUser extends Pagination {
   public void setId(Long id) {
     this.id = id;
   }
+
+  public int getRole() {
+    return role;
+  }
+
+  public void setRole(int role) {
+    this.role = role;
+  }
+
 }

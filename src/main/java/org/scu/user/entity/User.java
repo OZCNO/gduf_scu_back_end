@@ -11,8 +11,6 @@ public class User {
 
   private String password;
 
-  private Long supervisorId;
-
   private Integer role;
 
   public Long getId() {
@@ -37,14 +35,6 @@ public class User {
 
   public void setPassword(String password) {
     this.password = password;
-  }
-
-  public Long getSupervisorId() {
-    return supervisorId;
-  }
-
-  public void setSupervisorId(Long supervisorId) {
-    this.supervisorId = supervisorId;
   }
 
   public Integer getRole() {

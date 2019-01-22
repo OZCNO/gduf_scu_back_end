@@ -33,12 +33,13 @@ public class PassportController extends BaseController {
   @Autowired
   private UserLoginTokenService userLoginTokenService;
 
-  @Log(module = LogConstants.User.MODULE, action = LogConstants.User.ACTION_LOGIN)
+//  @Log(module = LogConstants.User.MODULE, action = LogConstants.User.ACTION_LOGIN)
   @RequestMapping(value = "login", method = RequestMethod.POST)
   public BaseResponse login(@RequestBody QUser user, HttpServletRequest request) {
     // 0. search by user name
     QUser search = new QUser();
-    search.setName(user.getName());
+    search.setUsername(user.getUsername());
+    search.setRole(user.getRole());
     List<User> userList = userService.list(search);
 
     // 1.check whether exist the match user by name
