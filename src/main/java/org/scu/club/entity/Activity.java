@@ -12,13 +12,14 @@ public class Activity {
 
   private Integer clubUnionId;
 
-  private short type;
+  // 区分社团 or 社联
+  private int type;
 
   private String theme;
 
   private String content;
 
-  private short memberActivity;
+  private int memberActivity;
 
   // 活动开始时间
   private Date time;
@@ -27,7 +28,17 @@ public class Activity {
   private Date enrollDeadline;
 
   // 活动审核状态
-  private short audit_states;
+  private int auditStates;
+
+  private String introduction;
+
+  public String getIntroduction() {
+    return introduction;
+  }
+
+  public void setIntroduction(String introduction) {
+    this.introduction = introduction;
+  }
 
   private Date createTime;
 
@@ -49,11 +60,11 @@ public class Activity {
     this.clubUnionId = clubUnionId;
   }
 
-  public short getType() {
+  public int getType() {
     return type;
   }
 
-  public void setType(short type) {
+  public void setType(int type) {
     this.type = type;
   }
 
@@ -73,11 +84,11 @@ public class Activity {
     this.content = content;
   }
 
-  public short getMemberActivity() {
+  public int getMemberActivity() {
     return memberActivity;
   }
 
-  public void setMemberActivity(short memberActivity) {
+  public void setMemberActivity(int memberActivity) {
     this.memberActivity = memberActivity;
   }
 
@@ -97,12 +108,12 @@ public class Activity {
     this.enrollDeadline = enrollDeadline;
   }
 
-  public short getAudit_states() {
-    return audit_states;
+  public int getAuditStates() {
+    return auditStates;
   }
 
-  public void setAudit_states(short audit_states) {
-    this.audit_states = audit_states;
+  public void setAuditStates(int auditStates) {
+    this.auditStates = auditStates;
   }
 
   public Date getCreateTime() {

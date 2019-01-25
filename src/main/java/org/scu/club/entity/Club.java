@@ -86,16 +86,16 @@ public class Club {
     return this.updateTime;
   }
 
-  @Override
-  public String toString() {
-    return "Club{" +
-        "id='" + id + '\'' +
-        "name='" + name + '\'' +
-        "teacherId='" + teacherId + '\'' +
-        "clubType='" + clubType + '\'' +
-        "createTime='" + createTime + '\'' +
-        "updateTime='" + updateTime + '\'' +
-        '}';
-  }
+//  @Override
+//  public String toString() {
+//    return "Club{" +
+//        "id='" + id + '\'' +
+//        "name='" + name + '\'' +
+//        "teacherId='" + teacherId + '\'' +
+//        "clubType='" + clubType + '\'' +
+//        "createTime='" + createTime + '\'' +
+//        "updateTime='" + updateTime + '\'' +
+//        '}';
+//  }
 
 }
