@@ -9,6 +9,26 @@ public class QStudent extends Pagination {
 
   private String name;
 
+  private Integer clubId;
+
+  private int role;
+
+  public int getRole() {
+    return role;
+  }
+
+  public void setRole(int role) {
+    this.role = role;
+  }
+
+  public Integer getClubId() {
+    return clubId;
+  }
+
+  public void setClubId(Integer clubId) {
+    this.clubId = clubId;
+  }
+
   public String getName() {
     return name;
   }

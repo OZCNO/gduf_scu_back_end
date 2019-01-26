@@ -1,4 +1,4 @@
-package org.scu.club.entity;
+package org.scu.activity.entity;
 
 import java.util.Date;
 

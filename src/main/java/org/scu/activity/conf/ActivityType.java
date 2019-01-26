@@ -1,12 +1,12 @@
-package org.scu.club.conf;
+package org.scu.activity.conf;
 
 /**
  * Created by lynn on 2019/1/23
  */
 public enum ActivityType {
 
-  UNION_ACTIVITY(1, "社联活动"),
-  CLUB_ACTIVITY(2, "社团活动");
+  UNION_ACTIVITY(1, "union"),
+  CLUB_ACTIVITY(2, "club");
 
   ActivityType(int code, String typeName) {
     this.code = code;

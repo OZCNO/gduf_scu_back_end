@@ -1,4 +1,4 @@
-package org.scu.club.vo;
+package org.scu.activity.vo;
 
 import org.scu.base.vo.Pagination;
 
@@ -8,6 +8,16 @@ import org.scu.base.vo.Pagination;
 public class QActivity extends Pagination {
 
   private String name;
+
+  private int status;
+
+  public int getStatus() {
+    return status;
+  }
+
+  public void setStatus(int status) {
+    this.status = status;
+  }
 
   public String getName() {
     return name;

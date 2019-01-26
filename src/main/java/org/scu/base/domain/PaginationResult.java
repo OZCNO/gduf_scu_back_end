@@ -38,13 +38,13 @@ public class PaginationResult {
     this(list, pagination.getPage(), pagination.getPageSize(), totalCount);
   }
 
-  public long getTotalPage() {
-    long totalPage = totalCount / getPageSize();
-    if (totalPage * getPageSize() != totalCount) {
-      totalPage++;
-    }
-    return totalPage;
-  }
+//  public long getTotalPage() {
+//    long totalPage = totalCount / getPageSize();
+//    if (totalPage * getPageSize() != totalCount) {
+//      totalPage++;
+//    }
+//    return totalPage;
+//  }
 
   public long getTotalCount() {
     return totalCount;

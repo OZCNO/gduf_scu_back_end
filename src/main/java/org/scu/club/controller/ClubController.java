@@ -1,9 +1,14 @@
 package org.scu.club.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import java.util.List;
+import org.scu.activity.conf.AnnualRegStatus;
 import org.scu.base.controller.BaseController;
 import org.scu.base.domain.BaseResponse;
 import org.scu.base.domain.PaginationResult;
+import org.scu.club.entity.AnnualRegistration;
+import org.scu.club.mapper.AnnualRegistrationMapper;
 import org.scu.club.service.ClubService;
 import org.scu.club.vo.QClub;
 import org.scu.club.vo.VClub;
@@ -12,22 +17,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by Lamm on 2019/1/21
  */
+@Api(description = "社团", tags = {"社团"})
 @RestController
 public class ClubController extends BaseController {
 
   @Autowired
   private ClubService clubService;
 
+  @Autowired
+  private AnnualRegistrationMapper annualRegistrationMapper;
+
   /**
    * 获取社团列表
    */
   @GetMapping("/club")
+  @ApiOperation(value = "获取社团信息列表", notes = "获取社团信息列表", httpMethod = "GET")
   public BaseResponse listClubs(@RequestParam(required = false) String name,
       @RequestParam(required = false, defaultValue = "1") long page,
       @RequestParam(required = false, defaultValue = "10") long pageSize) {
@@ -49,21 +60,16 @@ public class ClubController extends BaseController {
   }
 
   /**
-   * 提交社团活动申请
-   * @return
-   */
-  @PostMapping("/club/activity/application")
-  public BaseResponse applyActivity() {
-    return null;
-  }
-
-  /**
    * 提交年度注册表
    * @return
    */
-  @PostMapping("/club/annual/registration")
-  public BaseResponse applyAnnualRegistration() {
-    return null;
+  @PostMapping("/club/{id}/annual/registration")
+  @ApiOperation(value = "提交年度注册表", notes = "提交年度注册表", httpMethod = "GET")
+  public BaseResponse applyAnnualRegistration(@PathVariable("id") Integer id,
+      @RequestBody AnnualRegistration info) {
+    info.setAuditStatus(AnnualRegStatus.UNDER_REVIEW.getCode());
+    int result = annualRegistrationMapper.insert(info);
+    return response(result, info);
   }
 
   /**

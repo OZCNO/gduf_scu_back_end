@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.scu.club.mapper.AnnualRegistrationMapper">
+
+  <sql id="allFields">
+    annual_reg.id,
+    annual_reg.club_id clubId,
+    annual_reg.time,
+    annual_reg.summary,
+    annual_reg.plan,
+    annual_reg.`comment`,
+    annual_reg.audit_status auditStatus,
+    annual_reg.create_time createTime,
+    annual_reg.update_time updateTime
+  </sql>
+
+  <select id="list" parameterType="org.scu.club.vo.QAnnualRegistration" resultType="org.scu.club.entity.AnnualRegistration">
+    SELECT
+      <include refid="allFields"/>
+    FROM
+      annual_reg
+    limit #{startRecord}, #{endRecord}
+  </select>
+
+  <select id="count" parameterType="org.scu.club.vo.QAnnualRegistration" resultType="Integer">
+    SELECT
+    count(1)
+    FROM
+    annual_reg
+  </select>
+
+  <insert id="insert"  useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO annual_reg
+    (
+    <trim suffixOverrides=",">
+      club_id,
+      time,
+      summary,
+      plan,
+      comment,
+      audit_status,
+      create_time,
+      update_time,
+    </trim>
+    )
+    VALUES
+    (
+    <trim suffixOverrides=",">
+      #{clubId},
+      #{time},
+      #{summary},
+      #{plan},
+      #{comment},
+      #{auditStatus},
+      #{createTime},
+      #{updateTime},
+    </trim>
+    )
+  </insert>
+
+  <update id="update">
+    UPDATE annual_reg
+    SET
+    <trim suffixOverrides=",">
+      club_id = #{clubId},
+      time = #{time},
+      summary = #{summary},
+      plan = #{plan},
+      comment = #{comment},
+      audit_status = #{auditStatus},
+      create_time = #{createTime},
+      update_time = #{updateTime},
+    </trim>
+    WHERE
+    <trim suffixOverrides="and">
+      `id` = #{id} and
+    </trim>
+  </update>
+</mapper>

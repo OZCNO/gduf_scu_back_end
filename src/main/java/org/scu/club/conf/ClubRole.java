@@ -1,16 +1,14 @@
-package org.scu.user.conf;
+package org.scu.club.conf;
 
 /**
- * Created by lynn on 2019/1/21
+ * Created by lynn on 2019/1/26
  */
-public enum UserRole {
+public enum ClubRole {
 
-  STUDENT(1, "学生"),
-  CLUB_ADMIN(2, "社团管理员"),
-  UNION_ADMIN(3, "社联管理员"),
-  TEACHER_ADMIN(4, "校团委管理人");
+  OFFICER(0,"干事"),
+  VIP(1,"会员");
 
-  UserRole(int code, String roleName) {
+  ClubRole(int code, String roleName) {
     this.code = code;
     this.roleName = roleName;
   }

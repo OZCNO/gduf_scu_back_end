@@ -105,11 +105,12 @@
     </trim>
   </update>
 
-  <resultMap type="." id="StudentMap">
+  <resultMap type="org.scu.student.entity.Student" id="StudentMap">
     <result property="id" column="id"/>
     <result property="name" column="name"/>
     <result property="sex" column="sex"/>
     <result property="majorId" column="major_id"/>
+    <result property="departmentId" column="department_id"/>
     <result property="email" column="email"/>
     <result property="userId" column="user_id"/>
     <result property="avatar" column="avatar"/>
@@ -122,19 +123,35 @@
     select
     <include refid="allResult"></include>
     from student
+    LEFT JOIN
+    club_student_mapping ctm
+    ON
+    ctm.student_id = student.id
     where
-    1=1
+    ctm.club_id = #{clubId}
     <if test="name != null and name!=''">
-      AND `name` = #{name},
+      AND (`name` like concat(concat('%',#{name}),'%')
+    </if>
+    <if test="role != null">
+      AND ctm.role = #{role}
     </if>
     limit #{startRecord}, #{endRecord}
   </select>
 
   <sql id="allResult">
     <trim suffixOverrides=",">
-      student.`id`,
+      student.id,
       student.`name`,
-
+      student.`code`,
+      student.sex,
+      student.major_id,
+      student.email,
+      student.mobile,
+      student.user_id,
+      student.avatar,
+      student.department_id,
+      student.create_time,
+      student.update_time
     </trim>
   </sql>
 

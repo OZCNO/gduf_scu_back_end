@@ -9,7 +9,7 @@ public class StatusCode {
   /**
    * 0 means execute successfully in current session
    */
-  public static final String SUCCESS = "0";
+  public static final String SUCCESS = "200";
 
   /**
    * 500 means throw exception which hasn't bean catch in current session
@@ -19,7 +19,7 @@ public class StatusCode {
   /**
    * -1 means execute fail in current session
    */
-  public static final String FAIL = "-1";
+  public static final String FAIL = "0";
 
   /**
    * 404 means the resource not found in current session

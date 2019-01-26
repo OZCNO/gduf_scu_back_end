@@ -1,4 +1,134 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.scu.club.mapper.ActivityMapper">
+<mapper namespace="org.scu.activity.mapper.ActivityMapper">
+  <sql id="allResult">
+    <trim suffixOverrides=",">
+      activity.id,
+      activity.club_union_id clubUnionId,
+      `name` clubOrUnionName,
+      activity.type,
+      activity.theme,
+      activity.introduction,
+      activity.content,
+      activity.member_activity memberActivity,
+      activity.time,
+      activity.enroll_deadline enrollDeadline,
+      activity.audit_states auditStates,
+      activity.create_time createTime,
+      activity.update_time updateTime,
+    </trim>
+  </sql>
+
+  <resultMap type="org.scu.activity.vo.VActivity" id="activityMap">
+    <result property="id" column="id"/>
+    <result property="clubUnionId" column="clubUnionId"/>
+    <result property="clubOrUnionName" column="clubOrUnionName"/>
+    <result property="type" column="type"/>
+    <result property="theme" column="theme"/>
+    <result property="introduction" column="introduction"/>
+    <result property="content" column="content"/>
+    <result property="memberActivity" column="memberActivity"/>
+    <result property="time" column="time"/>
+    <result property="enrollDeadline" column="enrollDeadline"/>
+    <result property="auditStates" column="auditStates"/>
+    <result property="createTime" column="createTime"/>
+    <result property="updateTime" column="updateTime"/>
+  </resultMap>
+
+  <select id="listClubActivities" parameterType="org.scu.activity.vo.QActivity" resultMap="activityMap">
+    select
+    <include refid="allResult"></include>
+    from activity,club
+    where
+    1=1
+    AND club_union_id = club.id
+    limit #{startRecord}, #{endRecord}
+  </select>
+
+  <select id="listUnionActivities" parameterType="org.scu.activity.vo.QActivity" resultMap="activityMap">
+    select
+    <include refid="allResult"></include>
+    from activity,`union`
+    where
+    1=1
+    AND club_union_id = `union`.id
+    limit #{startRecord}, #{endRecord}
+  </select>
+
+  <insert id="insert"  useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO `activity`
+    (
+    <trim suffixOverrides=",">
+      club_union_id,
+      `type`,
+      theme,
+      introduction,
+      content,
+      member_activity,
+      `time`,
+      enroll_deadline,
+      audit_states,
+      create_time,
+      update_time,
+    </trim>
+    )
+    VALUES
+    (
+      <trim suffixOverrides=",">
+        #{clubUnionId},
+        #{type},
+        #{theme},
+        #{introduction},
+        #{content},
+        #{memberActivity},
+        #{time},
+        #{enrollDeadline},
+        #{auditStates},
+        #{createTime},
+        #{updateTime},
+      </trim>
+    )
+  </insert>
+
+  <select id="getById" parameterType="Long" resultType="org.scu.activity.entity.Activity">
+    select
+      activity.id,
+      activity.club_union_id clubUnionId,
+      activity.type,
+      activity.theme,
+      activity.introduction,
+      activity.content,
+      activity.member_activity memberActivity,
+      activity.time,
+      activity.enroll_deadline enrollDeadline,
+      activity.audit_states auditStates,
+      activity.create_time createTime,
+      activity.update_time updateTime
+    from activity
+    where
+      id = #{id}
+  </select>
+
+  <update id="update">
+    UPDATE activity
+    SET
+    <trim suffixOverrides=",">
+      club_union_id = #{clubUnionId},
+      type = #{type},
+      theme = #{theme},
+      introduction = #{introduction},
+      content = #{content},
+      member_activity = #{memberActivity},
+      time = #{time},
+      enroll_deadline = #{enrollDeadline},
+      audit_states = #{auditStates},
+      create_time = #{createTime},
+      update_time = #{updateTime}
+    </trim>
+    WHERE
+    <trim suffixOverrides="and">
+      `id` = #{id} and
+    </trim>
+  </update>
+</mapper>
