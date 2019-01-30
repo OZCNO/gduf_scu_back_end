@@ -56,14 +56,12 @@
     (
       username,
       password,
-      supervisor_id,
       role
     )
     VALUES
     (
       #{username},
       #{password},
-      #{supervisorId},
       #{role}
     )
   </insert>
@@ -74,7 +72,6 @@
     SET
       username = #{username},
       password = #{password},
-      supervisor_id = #{supervisorId},
       role = #{role}
     WHERE
       id = #{id}

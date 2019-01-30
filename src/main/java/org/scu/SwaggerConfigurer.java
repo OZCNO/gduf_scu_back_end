@@ -57,7 +57,7 @@ public class SwaggerConfigurer {
 
   private ApiInfo apiInfo() {
     return new ApiInfoBuilder().title("GDUF SCU Restful API DOCUMENTS")
-                               .description("Proj`ect For Graduation Design")
+                               .description("Project For Graduation Design")
                                .termsOfServiceUrl("https://www.baidu.com/")
                                .contact(new Contact("Lamm Gaa Jyu",
                                                     "https://github.com/lynn-jyu",

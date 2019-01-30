@@ -13,7 +13,7 @@ public class LoginUserInfo {
 
   public LoginUserInfo(User user) {
     this.id = user.getId();
-    this.name = user.getName();
+    this.name = user.getUsername();
   }
 
   public Long getId() {

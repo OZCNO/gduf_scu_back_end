@@ -10,6 +10,7 @@ import org.scu.base.conf.LogConstants;
 import org.scu.log.annotation.Log;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,7 +26,7 @@ public class UserController extends BaseController {
   private UserService userService;
 
 //  @Log(module = LogConstants.User.MODULE, action = LogConstants.User.ACTION_MODIFY_PASSWORD)
-  @RequestMapping(value = "user/password", method = RequestMethod.POST)
+  @PutMapping("/user/password")
   public BaseResponse modifyPass(@RequestBody ModifyPasswordReq req,  HttpServletRequest request) {
     User loginUser = getLoginUser(request);
     BaseResponse resp = new BaseResponse();
