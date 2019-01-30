@@ -56,12 +56,12 @@ public class SwaggerConfigurer {
   }
 
   private ApiInfo apiInfo() {
-    return new ApiInfoBuilder().title("MM-AD-PLATFORM Restful API DOCUMENTS")
-                               .description("Project For BOC Team")
+    return new ApiInfoBuilder().title("GDUF SCU Restful API DOCUMENTS")
+                               .description("Proj`ect For Graduation Design")
                                .termsOfServiceUrl("https://www.baidu.com/")
-                               .contact(new Contact("lamm",
-                                                    "https://demo.com",
-                                                    "aaa@aaa.com"))
+                               .contact(new Contact("Lamm Gaa Jyu",
+                                                    "https://github.com/lynn-jyu",
+                                                    "522013042@qq.com"))
                                .version("0.0.1")
                                .build();
   }
