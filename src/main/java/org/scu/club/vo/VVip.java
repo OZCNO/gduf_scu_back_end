@@ -7,18 +7,18 @@ import org.scu.student.entity.Student;
  */
 public class VVip extends Student {
 
-  private String departmentName;
+  private String department;
 
   private String major;
 
   private Integer departmentId;
 
-  public String getDepartmentName() {
-    return departmentName;
+  public String getDepartment() {
+    return department;
   }
 
-  public void setDepartmentName(String departmentName) {
-    this.departmentName = departmentName;
+  public void setDepartment(String department) {
+    this.department = department;
   }
 
   public String getMajor() {
