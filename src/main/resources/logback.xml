@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration  scan="true" scanPeriod="60 seconds" debug="false">
+  <contextName>logback</contextName>
+  <property name="LOG_HOME" value="/yjdata/java/scu/logs" />
+  <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="sysAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_HOME}/sys/sys.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_HOME}/sys/sys-%d{yyyy-MM-dd_HH}.log</fileNamePattern>
+      <maxHistory>48</maxHistory>
+    </rollingPolicy>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <pattern>${ENCODER_PATTERN}</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="errorAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_HOME}/error/error.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_HOME}/error/error-%d{yyyy-MM-dd_HH}.log</fileNamePattern>
+      <maxHistory>10</maxHistory>
+    </rollingPolicy>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <pattern>${ENCODER_PATTERN}</pattern>
+    </encoder>
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>ERROR</level>
+    </filter>
+  </appender>
+
+  <appender name="sqlAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_HOME}/sql/sql.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_HOME}/sql/sql-%d{yyyy-MM-dd_HH}.log</fileNamePattern>
+      <maxHistory>10</maxHistory>
+    </rollingPolicy>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <Pattern>${ENCODER_PATTERN}</Pattern>
+    </encoder>
+  </appender>
+
+  <appender name="infoAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_HOME}/info/info.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_HOME}/info/info-%d{yyyy-MM-dd_HH}.log</fileNamePattern>
+      <maxHistory>10</maxHistory>
+    </rollingPolicy>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>INFO</level>
+    </filter>
+  </appender>
+
+  <root level="debug">
+    <appender-ref ref="console" />
+    <appender-ref ref="sysAppender" />
+    <appender-ref ref="errorAppender" />
+    <appender-ref ref="sqlAppender" />
+    <appender-ref ref="infoAppender"/>
+  </root>
+</configuration>
