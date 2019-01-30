@@ -3,8 +3,10 @@ package org.scu.student.service.impl;
 import java.util.List;
 import org.scu.club.vo.VVip;
 import org.scu.student.entity.Student;
+import org.scu.student.mapper.StudentMapper;
 import org.scu.student.service.StudentService;
 import org.scu.student.vo.QStudent;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,9 +15,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class StudentServiceImpl implements StudentService {
 
+  @Autowired
+  private StudentMapper studentMapper;
+
   @Override
   public List<VVip> listClubVips(QStudent search) {
-    return null;
+    return studentMapper.listClubVips(search);
   }
 
   @Override

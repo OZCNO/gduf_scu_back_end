@@ -28,6 +28,11 @@ public class Student {
   private Integer majorId;
 
   /**
+   * 学号 isNullAble:0
+   */
+  private String code;
+
+  /**
    * 邮箱 isNullAble:0
    */
   private String email;
@@ -125,6 +130,14 @@ public class Student {
     return this.updateTime;
   }
 
+  public String getCode() {
+    return code;
+  }
+
+  public void setCode(String code) {
+    this.code = code;
+  }
+
   @Override
   public String toString() {
     return "Student{" +
@@ -135,6 +148,7 @@ public class Student {
         "email='" + email + '\'' +
         "userId='" + userId + '\'' +
         "avatar='" + avatar + '\'' +
+        "code='" + code + '\'' +
         "createTime='" + createTime + '\'' +
         "updateTime='" + updateTime + '\'' +
         '}';

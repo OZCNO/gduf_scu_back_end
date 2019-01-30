@@ -105,12 +105,15 @@
     </trim>
   </update>
 
-  <resultMap type="org.scu.student.entity.Student" id="StudentMap">
+  <resultMap type="org.scu.club.vo.VVip" id="VipMap">
     <result property="id" column="id"/>
     <result property="name" column="name"/>
+    <result property="code" column="code"/>
     <result property="sex" column="sex"/>
     <result property="majorId" column="major_id"/>
+    <result property="major" column="major_name"/>
     <result property="departmentId" column="department_id"/>
+    <!--<result property="department" column="department_name"/>-->
     <result property="email" column="email"/>
     <result property="userId" column="user_id"/>
     <result property="avatar" column="avatar"/>
@@ -119,21 +122,25 @@
   </resultMap>
 
 
-  <select id="listClubVips" parameterType="org.scu.student.vo.QStudent" resultMap="StudentMap">
+  <select id="listClubVips" parameterType="org.scu.student.vo.QStudent" resultMap="VipMap">
     select
     <include refid="allResult"></include>
     from student
     LEFT JOIN
-    club_student_mapping ctm
+    club_student_mapping club_student_mapping
     ON
-    ctm.student_id = student.id
-    where
-    ctm.club_id = #{clubId}
+    club_student_mapping.student_id = student.id
+    LEFT JOIN
+    major major
+    ON
+    student.major_id = major.id
+    WHERE
+    club_student_mapping.club_id = #{clubId}
     <if test="name != null and name!=''">
       AND (`name` like concat(concat('%',#{name}),'%')
     </if>
     <if test="role != null">
-      AND ctm.role = #{role}
+      AND club_student_mapping.role = #{role}
     </if>
     limit #{startRecord}, #{endRecord}
   </select>
@@ -149,7 +156,9 @@
       student.mobile,
       student.user_id,
       student.avatar,
-      student.department_id,
+      club_student_mapping.department_id,
+      /*department_name,*/
+      major.`name` major_name,
       student.create_time,
       student.update_time
     </trim>

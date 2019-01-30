@@ -8,6 +8,7 @@ import org.scu.base.domain.PaginationResult;
 import org.scu.base.vo.Pagination;
 import org.scu.club.vo.VVip;
 import org.scu.student.mapper.StudentMapper;
+import org.scu.student.service.StudentService;
 import org.scu.student.vo.QStudent;
 import org.scu.user.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class VipController extends BaseController{
 
   @Autowired
-  private StudentMapper studentMapper;
+  private StudentService studentService;
 
   /**
    * 获取会员/干事信息
@@ -39,7 +40,7 @@ public class VipController extends BaseController{
   @ApiOperation(value = "获取社团会员/干事列表", notes = "获取社团会员/干事列表", httpMethod = "GET")
   public BaseResponse listVips(@PathVariable("id") Integer clubId,
       @RequestParam(required = false) String name,
-      @RequestParam(required = false) int role,
+      @RequestParam(required = false) Integer role,
       @RequestParam(required = false, defaultValue = "1") long page,
       @RequestParam(required = false, defaultValue = "10") long pageSize) {
     QStudent search = new QStudent();
@@ -48,7 +49,7 @@ public class VipController extends BaseController{
     search.setName(name);
     search.setPage(page);
     search.setPageSize(pageSize);
-    List<VVip> vipList = studentMapper.listClubVips(search);
+    List<VVip> vipList = studentService.listClubVips(search);
     PaginationResult paginationResult = new PaginationResult(vipList);
     return response(paginationResult);
   }
