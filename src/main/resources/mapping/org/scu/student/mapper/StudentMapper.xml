@@ -121,7 +121,6 @@
     <result property="updateTime" column="update_time"/>
   </resultMap>
 
-
   <select id="listClubVips" parameterType="org.scu.student.vo.QStudent" resultMap="VipMap">
     select
     <include refid="allResult"></include>
@@ -163,5 +162,28 @@
       student.update_time
     </trim>
   </sql>
+
+  <select id="countClubVips" parameterType="org.scu.student.vo.QStudent" resultType="int">
+    select
+    count(1)
+    from student
+    LEFT JOIN
+    club_student_mapping club_student_mapping
+    ON
+    club_student_mapping.student_id = student.id
+    LEFT JOIN
+    major major
+    ON
+    student.major_id = major.id
+    WHERE
+    club_student_mapping.club_id = #{clubId}
+    <if test="name != null and name!=''">
+      AND (student.`name` like concat(concat('%',#{name}),'%') )
+    </if>
+    <if test="role != null">
+      AND club_student_mapping.role = #{role}
+    </if>
+    limit #{startRecord}, #{endRecord}
+  </select>
 
 </mapper>

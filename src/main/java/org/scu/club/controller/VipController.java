@@ -24,17 +24,13 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by Lamm on 2019/1/21
  */
 @RestController
-public class VipController extends BaseController{
+public class VipController extends BaseController {
 
   @Autowired
   private StudentService studentService;
 
   /**
    * 获取会员/干事信息
-   * @param name
-   * @param page
-   * @param pageSize
-   * @return
    */
   @GetMapping(value = "/club/{id}/vip")
   @ApiOperation(value = "获取社团会员/干事列表", notes = "获取社团会员/干事列表", httpMethod = "GET")
@@ -50,7 +46,8 @@ public class VipController extends BaseController{
     search.setPage(page);
     search.setPageSize(pageSize);
     List<VVip> vipList = studentService.listClubVips(search);
-    PaginationResult paginationResult = new PaginationResult(vipList);
+    Integer totalCount = studentService.countClubVips(search);
+    PaginationResult paginationResult = new PaginationResult(vipList, page, pageSize, totalCount);
     return response(paginationResult);
   }
 

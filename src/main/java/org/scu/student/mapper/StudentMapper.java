@@ -12,4 +12,6 @@ import org.scu.student.vo.QStudent;
 public interface StudentMapper extends BaseMapper<QStudent, Student> {
 
   List<VVip> listClubVips(QStudent search);
+
+  Integer countClubVips(QStudent search);
 }

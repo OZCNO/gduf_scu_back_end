@@ -24,6 +24,11 @@ public class StudentServiceImpl implements StudentService {
   }
 
   @Override
+  public Integer countClubVips(QStudent search) {
+    return studentMapper.countClubVips(search);
+  }
+
+  @Override
   public List<Student> list(QStudent search) {
     return null;
   }

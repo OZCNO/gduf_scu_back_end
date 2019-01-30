@@ -12,4 +12,6 @@ import org.scu.student.vo.QStudent;
 public interface StudentService extends BaseDBService<QStudent, Student> {
 
   List<VVip> listClubVips(QStudent search);
+
+  Integer countClubVips(QStudent search);
 }
