@@ -56,13 +56,17 @@
     (
       username,
       password,
-      role
+      role,
+      create_time,
+      update_time
     )
     VALUES
     (
       #{username},
       #{password},
-      #{role}
+      #{role},
+      #{createTime},
+      #{updateTime}
     )
   </insert>
 
@@ -72,7 +76,8 @@
     SET
       username = #{username},
       password = #{password},
-      role = #{role}
+      role = #{role},
+      update_time = #{updateTime}
     WHERE
       id = #{id}
   </update>

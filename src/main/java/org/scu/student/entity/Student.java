@@ -57,6 +57,18 @@ public class Student {
    */
   private Date updateTime;
 
+  /**
+   * 手机 isNullAble:0
+   */
+  private String mobile;
+
+  public String getMobile() {
+    return mobile;
+  }
+
+  public void setMobile(String mobile) {
+    this.mobile = mobile;
+  }
 
   public void setId(Integer id) {
     this.id = id;

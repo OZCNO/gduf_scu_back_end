@@ -55,7 +55,7 @@ public class ClubController extends BaseController {
    * 根据id获取社团信息
    */
   @GetMapping("/club/{id}")
-  public BaseResponse getClub(@PathVariable("id") Long id) {
+  public BaseResponse getClub(@PathVariable("id") Integer id) {
     return null;
   }
 
@@ -77,7 +77,7 @@ public class ClubController extends BaseController {
    * @return
    */
   @PutMapping("/club/{id}")
-  public BaseResponse updateAssociationInfo() {
+  public BaseResponse updateAssociationInfo(@PathVariable("id") Integer id) {
     return null;
   }
 }
