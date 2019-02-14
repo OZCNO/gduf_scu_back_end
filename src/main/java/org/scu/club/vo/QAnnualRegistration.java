@@ -7,4 +7,15 @@ import org.scu.base.vo.Pagination;
  */
 public class QAnnualRegistration extends Pagination {
 
+//  private String name;
+
+  private int status;
+
+  public int getStatus() {
+    return status;
+  }
+
+  public void setStatus(int status) {
+    this.status = status;
+  }
 }

@@ -9,6 +9,7 @@ import org.scu.base.domain.BaseResponse;
 import org.scu.base.domain.PaginationResult;
 import org.scu.club.entity.AnnualRegistration;
 import org.scu.club.mapper.AnnualRegistrationMapper;
+import org.scu.club.service.AnnualRegistrationService;
 import org.scu.club.service.ClubService;
 import org.scu.club.vo.QClub;
 import org.scu.club.vo.VClub;
@@ -32,7 +33,7 @@ public class ClubController extends BaseController {
   private ClubService clubService;
 
   @Autowired
-  private AnnualRegistrationMapper annualRegistrationMapper;
+  private AnnualRegistrationService annualRegistrationService;
 
   /**
    * 获取社团列表
@@ -68,7 +69,7 @@ public class ClubController extends BaseController {
   public BaseResponse applyAnnualRegistration(@PathVariable("id") Integer id,
       @RequestBody AnnualRegistration info) {
     info.setAuditStatus(AnnualRegStatus.UNDER_REVIEW.getCode());
-    int result = annualRegistrationMapper.insert(info);
+    int result = annualRegistrationService.insert(info);
     return response(result, info);
   }
 
