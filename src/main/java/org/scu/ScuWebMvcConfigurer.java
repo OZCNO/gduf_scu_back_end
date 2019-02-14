@@ -35,6 +35,7 @@ public class ScuWebMvcConfigurer extends WebMvcConfigurationSupport {
     // add auth interceptor
     registry.addInterceptor(authInterceptor)
             .excludePathPatterns("/login",
+                                 "/reg",
                                  "/swagger-resources/**",
                                  "/webjars/**",
                                  "/v2/**",

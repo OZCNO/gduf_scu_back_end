@@ -28,7 +28,7 @@ public class PassportControllerTest {
   @Test
   public void login() throws Exception {
     QUser loginParams = new QUser();
-    loginParams.setName("lamm");
+    loginParams.setUsername("lamm");
     loginParams.setPassword("123456");
     BaseResponse result = testRestTemplate.postForObject("/login", loginParams, BaseResponse.class);
     Assert.assertEquals(StatusCode.SUCCESS, result.getCode());

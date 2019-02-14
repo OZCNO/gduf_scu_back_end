@@ -1,6 +1,7 @@
 package org.scu.activity.service.impl;
 
 import java.util.List;
+import org.scu.activity.conf.ActivityStatus;
 import org.scu.activity.conf.ActivityType;
 import org.scu.activity.entity.Activity;
 import org.scu.activity.mapper.ActivityMapper;
@@ -51,6 +52,7 @@ public class ActivityServiceImpl implements ActivityService {
     } else {
       item.setType(ActivityType.CLUB_ACTIVITY.getCode());
     }
+    item.setAuditStates(ActivityStatus.UNDER_REVIEW.getCode());
     return activityMapper.insert(item);
   }
 

@@ -10,7 +10,6 @@ import org.scu.club.vo.VVip;
 import org.scu.student.mapper.StudentMapper;
 import org.scu.student.service.StudentService;
 import org.scu.student.vo.QStudent;
-import org.scu.user.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

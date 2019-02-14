@@ -1,5 +1,6 @@
 package org.scu.club.service.impl;
 
+import java.util.Date;
 import java.util.List;
 import org.scu.club.entity.AnnualRegistration;
 import org.scu.club.mapper.AnnualRegistrationMapper;
@@ -19,6 +20,10 @@ public class AnnualRegistrationServiceImpl implements AnnualRegistrationService 
 
   @Override
   public int insert(AnnualRegistration item) {
+    Date current = new Date();
+    item.setTime(current);
+    item.setCreateTime(current);
+    item.setUpdateTime(current);
     return annualRegistrationMapper.insert(item);
   }
 
