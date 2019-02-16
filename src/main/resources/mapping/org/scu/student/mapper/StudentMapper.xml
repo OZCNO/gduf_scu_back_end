@@ -195,7 +195,6 @@
     <if test="role != null">
       AND club_student_mapping.role = #{role}
     </if>
-    limit #{startRecord}, #{endRecord}
   </select>
 
 </mapper>
