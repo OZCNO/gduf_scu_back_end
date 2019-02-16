@@ -98,7 +98,7 @@
 
   <select id="listClubs" parameterType="org.scu.club.vo.QClub" resultMap="ClubMap">
     select
-    <include refid="allResult"></include>
+      <include refid="allResult"></include>
     from  club, club_type, teacher
     where
       club.club_type = club_type.id

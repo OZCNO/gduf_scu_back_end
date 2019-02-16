@@ -1,5 +1,7 @@
 package org.scu.user.entity;
 
+import java.util.Date;
+
 /**
  * Created by Lamm on 2018/12/19.
  */
@@ -12,6 +14,26 @@ public class User {
   private String password;
 
   private Integer role;
+
+  private Date createTime;
+
+  private Date updateTime;
+
+  public Date getCreateTime() {
+    return createTime;
+  }
+
+  public void setCreateTime(Date createTime) {
+    this.createTime = createTime;
+  }
+
+  public Date getUpdateTime() {
+    return updateTime;
+  }
+
+  public void setUpdateTime(Date updateTime) {
+    this.updateTime = updateTime;
+  }
 
   public Long getId() {
     return id;
