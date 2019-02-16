@@ -69,12 +69,12 @@ public class StudentServiceImpl implements StudentService {
     userMapper.insert(user);
     Student student = new Student();
     Date current = new Date();
-    student.setName("");
+    student.setName(item.getName());
     student.setMobile("");
     student.setCreateTime(current);
     student.setUpdateTime(current);
     student.setAvatar("");
-    student.setCode("");
+    student.setCode(item.getUsername());
     student.setEmail("");
     student.setMajorId(-1);
     student.setSex("");
