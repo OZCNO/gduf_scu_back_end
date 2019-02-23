@@ -1,5 +1,15 @@
 package org.scu.user.service.impl;
 
+import org.scu.club.entity.ClubAdmin;
+import org.scu.club.mapper.ClubAdminMapper;
+import org.scu.student.entity.Student;
+import org.scu.student.mapper.StudentMapper;
+import org.scu.teacher.entity.TeacherAdmin;
+import org.scu.teacher.mapper.TeacherAdminMapper;
+import org.scu.union.entity.UnionAdmin;
+import org.scu.union.mapper.UnionAdminMapper;
+import org.scu.user.conf.UserRole;
+import org.scu.user.entity.RoleInfo;
 import org.scu.user.service.UserService;
 import org.scu.user.conf.UserConf;
 import org.scu.user.entity.User;
@@ -18,6 +28,18 @@ public class UserServiceImpl implements UserService {
 
   @Autowired
   private UserMapper userMapper;
+
+  @Autowired
+  private StudentMapper studentMapper;
+
+  @Autowired
+  private TeacherAdminMapper teacherAdminMapper;
+
+  @Autowired
+  private ClubAdminMapper clubAdminMapper;
+
+  @Autowired
+  private UnionAdminMapper unionAdminMapper;
 
   @Override
   public String encryptPass(String password) {
@@ -62,6 +84,26 @@ public class UserServiceImpl implements UserService {
   @Override
   public User getById(long id) {
     return userMapper.getById(id);
+  }
+
+  @Override
+  public RoleInfo getRoleInfo(User user) {
+    if (user.getRole().equals(UserRole.STUDENT.getCode())) {
+      Student student = studentMapper.getByUserId(user.getId());
+      if (student != null) {
+        return student;
+      }
+    } else if(user.getRole().equals(UserRole.CLUB_ADMIN.getCode())) {
+      ClubAdmin clubAdmin = clubAdminMapper.getByUserId(user.getId());
+      return clubAdmin;
+    } else if(user.getRole().equals(UserRole.UNION_ADMIN.getCode())) {
+      UnionAdmin unionAdmin = unionAdminMapper.getByUserId(user.getId());
+      return unionAdmin;
+    } else {
+      TeacherAdmin teacherAdmin = teacherAdminMapper.getByUserId(user.getId());
+      return teacherAdmin;
+    }
+    return null;
   }
 
   public static void main(String[] args) {

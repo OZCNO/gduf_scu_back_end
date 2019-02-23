@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.scu.teacher.mapper.TeacherAdminMapper">
+
+  <sql id="allResult">
+    <trim suffixOverrides=",">
+      teacher_admin.id,
+      teacher_admin.user_id,
+      teacher_admin.avatar,
+      teacher_admin.create_time,
+      teacher_admin.update_time
+    </trim>
+  </sql>
+
+  <select id="getByUserId" resultType="org.scu.teacher.entity.TeacherAdmin">
+    SELECT
+    <include refid="allResult"></include>
+    FROM
+    teacher_admin
+    WHERE
+    user_id = #{userId}
+  </select>
+</mapper>

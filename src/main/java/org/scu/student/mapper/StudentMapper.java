@@ -1,6 +1,7 @@
 package org.scu.student.mapper;
 
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 import org.scu.base.mapper.BaseMapper;
 import org.scu.club.vo.VVip;
 import org.scu.student.entity.Student;
@@ -14,4 +15,6 @@ public interface StudentMapper extends BaseMapper<QStudent, Student> {
   List<VVip> listClubVips(QStudent search);
 
   Integer countClubVips(QStudent search);
+
+  Student getByUserId(@Param("userId") long userId);
 }

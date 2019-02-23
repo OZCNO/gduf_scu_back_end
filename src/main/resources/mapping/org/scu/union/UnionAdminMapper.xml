@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.scu.union.mapper.UnionAdminMapper">
+
+  <sql id="allResult">
+    <trim suffixOverrides=",">
+      union_admin.id,
+      union_admin.`name`,
+      union_admin.user_id,
+      union_admin.avatar,
+      union_admin.create_time,
+      union_admin.update_time
+    </trim>
+  </sql>
+
+  <select id="getByUserId" resultType="org.scu.union.entity.UnionAdmin">
+    SELECT
+    <include refid="allResult"></include>
+    FROM
+    union_admin
+    WHERE
+    user_id = #{userId}
+  </select>
+</mapper>

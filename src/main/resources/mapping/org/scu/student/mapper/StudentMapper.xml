@@ -135,7 +135,10 @@
 
   <select id="listClubVips" parameterType="org.scu.student.vo.QStudent" resultMap="VipMap">
     select
-    <include refid="allResult"></include>
+    <include refid="allResult"></include>,
+    club_student_mapping.department_id,
+    /*department_name,*/
+    major.`name` major_name
     from student
     LEFT JOIN
     club_student_mapping club_student_mapping
@@ -167,9 +170,6 @@
       student.mobile,
       student.user_id,
       student.avatar,
-      club_student_mapping.department_id,
-      /*department_name,*/
-      major.`name` major_name,
       student.create_time,
       student.update_time
     </trim>
@@ -195,6 +195,14 @@
     <if test="role != null">
       AND club_student_mapping.role = #{role}
     </if>
+  </select>
+
+  <select id="getByUserId" parameterType="int" resultType="org.scu.student.entity.Student">
+    select
+    <include refid="allResult"></include>
+    from student
+    WHERE
+    user_id = #{userId}
   </select>
 
 </mapper>

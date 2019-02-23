@@ -95,7 +95,7 @@ public class StudentServiceImpl implements StudentService {
 
   @Override
   public Student getById(long id) {
-    return null;
+    return studentMapper.getById(id);
   }
 
   public String encryptPass(String password) {
