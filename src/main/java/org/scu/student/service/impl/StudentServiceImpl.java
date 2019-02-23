@@ -3,6 +3,7 @@ package org.scu.student.service.impl;
 import java.util.Date;
 import java.util.List;
 import org.scu.club.vo.VVip;
+import org.scu.student.conf.Gender;
 import org.scu.student.entity.Student;
 import org.scu.student.mapper.StudentMapper;
 import org.scu.student.service.StudentService;
@@ -77,7 +78,7 @@ public class StudentServiceImpl implements StudentService {
     student.setCode(item.getUsername());
     student.setEmail("");
     student.setMajorId(-1);
-    student.setSex("");
+    student.setSex(Gender.UNKNOW.getValue());
     student.setUserId(user.getId().intValue());
     studentMapper.insert(student);
     return user;

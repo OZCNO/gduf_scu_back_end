@@ -26,18 +26,18 @@ public class UnionController extends BaseController {
   @Autowired
   private AnnualRegistrationService annualRegistrationService;
 
-  @GetMapping("/club/annual/registration")
-  @ApiOperation(value = "获取年度注册表列表", notes = "获取年度注册表列表", httpMethod = "GET")
-  public BaseResponse listAnnualRegistration(@RequestBody QAnnualRegistration search,
-      @RequestParam(required = false, defaultValue = "1") long page,
-      @RequestParam(required = false, defaultValue = "10") long pageSize) {
-    search.setPage(page);
-    search.setPageSize(pageSize);
-    List<AnnualRegistration> list = annualRegistrationService.list(search);
-    long totalCount = annualRegistrationService.count(search);
-    PaginationResult paginationResult = new PaginationResult(list, page, pageSize, totalCount);
-    return response(paginationResult);
-  }
+//  @GetMapping("/club/annual/registration")
+//  @ApiOperation(value = "社联获取年度注册表列表", notes = "获取年度注册表列表", httpMethod = "GET")
+//  public BaseResponse listAnnualRegistration(@RequestBody QAnnualRegistration search,
+//      @RequestParam(required = false, defaultValue = "1") long page,
+//      @RequestParam(required = false, defaultValue = "10") long pageSize) {
+//    search.setPage(page);
+//    search.setPageSize(pageSize);
+//    List<AnnualRegistration> list = annualRegistrationService.list(search);
+//    long totalCount = annualRegistrationService.count(search);
+//    PaginationResult paginationResult = new PaginationResult(list, page, pageSize, totalCount);
+//    return response(paginationResult);
+//  }
 
   @PutMapping("/club/annual/registration/{id}/status")
   @ApiOperation(value = "审核年度注册表", notes = "审核年度注册表", httpMethod = "PUT")

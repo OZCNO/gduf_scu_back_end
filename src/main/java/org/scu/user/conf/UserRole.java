@@ -10,16 +10,16 @@ public enum UserRole {
   UNION_ADMIN(3, "社联管理员"),
   TEACHER_ADMIN(4, "校团委管理人");
 
-  UserRole(int code, String roleName) {
+  UserRole(Integer code, String roleName) {
     this.code = code;
     this.roleName = roleName;
   }
 
-  private int code;
+  private Integer code;
 
   private String roleName;
 
-  public int getCode() {
+  public Integer getCode() {
     return code;
   }
 

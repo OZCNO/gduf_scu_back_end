@@ -19,15 +19,32 @@
     SELECT
       <include refid="allFields"/>
     FROM
-      annual_reg
+      annual_reg annual_reg
+    <if test="userId != null">
+      ,club_admin club_admin
+      WHERE
+      club_admin.user_id = #{userId}
+      AND
+      annual_reg.club_id = club_admin.club_id
+    </if>
+    ORDER BY annual_reg.create_time
+    DESC
     limit #{startRecord}, #{endRecord}
+
   </select>
 
-  <select id="count" parameterType="org.scu.club.vo.QAnnualRegistration" resultType="Integer">
+  <select id="count" parameterType="org.scu.club.vo.QAnnualRegistration" resultType="long">
     SELECT
     count(1)
     FROM
     annual_reg
+    <if test="userId != null">
+      ,club_admin club_admin
+      WHERE
+      club_admin.user_id = #{userId}
+      AND
+      annual_reg.club_id = club_admin.club_id
+    </if>
   </select>
 
   <insert id="insert"  useGeneratedKeys="true" keyProperty="id">

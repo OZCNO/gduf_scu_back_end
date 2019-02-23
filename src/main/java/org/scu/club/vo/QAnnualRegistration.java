@@ -11,6 +11,16 @@ public class QAnnualRegistration extends Pagination {
 
   private int status;
 
+  private Long userId;
+
+  public Long getUserId() {
+    return userId;
+  }
+
+  public void setUserId(Long userId) {
+    this.userId = userId;
+  }
+
   public int getStatus() {
     return status;
   }
