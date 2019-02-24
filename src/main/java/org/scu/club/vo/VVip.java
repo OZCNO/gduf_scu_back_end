@@ -13,6 +13,16 @@ public class VVip extends Student {
 
   private Integer departmentId;
 
+  private String institudeName;
+
+  public String getInstitudeName() {
+    return institudeName;
+  }
+
+  public void setInstitudeName(String institudeName) {
+    this.institudeName = institudeName;
+  }
+
   public String getDepartment() {
     return department;
   }

@@ -22,7 +22,9 @@ public class Activity {
   private int memberActivity;
 
   // 活动开始时间
-  private Date time;
+  private Date timeBegin;
+
+  private Date timeEnd;
 
   // 报名截止时间
   private Date enrollDeadline;
@@ -31,6 +33,32 @@ public class Activity {
   private int auditStates;
 
   private String introduction;
+
+  private String address;
+
+  public String getAddress() {
+    return address;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
+  public Date getTimeBegin() {
+    return timeBegin;
+  }
+
+  public void setTimeBegin(Date timeBegin) {
+    this.timeBegin = timeBegin;
+  }
+
+  public Date getTimeEnd() {
+    return timeEnd;
+  }
+
+  public void setTimeEnd(Date timeEnd) {
+    this.timeEnd = timeEnd;
+  }
 
   public String getIntroduction() {
     return introduction;
@@ -90,14 +118,6 @@ public class Activity {
 
   public void setMemberActivity(int memberActivity) {
     this.memberActivity = memberActivity;
-  }
-
-  public Date getTime() {
-    return time;
-  }
-
-  public void setTime(Date time) {
-    this.time = time;
   }
 
   public Date getEnrollDeadline() {

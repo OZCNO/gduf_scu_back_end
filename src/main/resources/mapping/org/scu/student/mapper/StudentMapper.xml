@@ -125,7 +125,8 @@
     <result property="majorId" column="major_id"/>
     <result property="major" column="major_name"/>
     <result property="departmentId" column="department_id"/>
-    <!--<result property="department" column="department_name"/>-->
+    <result property="department" column="department_name"/>
+    <result property="institudeName" column="institude_name"/>
     <result property="email" column="email"/>
     <result property="userId" column="user_id"/>
     <result property="avatar" column="avatar"/>
@@ -135,21 +136,30 @@
 
   <select id="listClubVips" parameterType="org.scu.student.vo.QStudent" resultMap="VipMap">
     select
-    <include refid="allResult"></include>,
-    club_student_mapping.department_id,
-    /*department_name,*/
-    major.`name` major_name
+      <include refid="allResult"></include>,
+      club_student_mapping.department_id,
+      department.department_name,
+      major.`name` major_name,
+      institude.`name` institude_name
     from student
     LEFT JOIN
-    club_student_mapping club_student_mapping
+      club_student_mapping club_student_mapping
     ON
-    club_student_mapping.student_id = student.id
+      club_student_mapping.student_id = student.id
     LEFT JOIN
-    major major
+      major major
     ON
-    student.major_id = major.id
+      student.major_id = major.id
+    LEFT JOIN
+      department department
+    ON
+      department.id = club_student_mapping.department_id
+    LEFT JOIN
+    institude institude
+    ON
+    institude.id = major.institude_id
     WHERE
-    club_student_mapping.club_id = #{clubId}
+      club_student_mapping.club_id = #{clubId}
     <if test="name != null and name!=''">
       AND (student.`name` like concat(concat('%',#{name}),'%') )
     </if>

@@ -12,7 +12,8 @@
       activity.introduction,
       activity.content,
       activity.member_activity memberActivity,
-      activity.time,
+      activity.time_begin timeBegin,
+      activity.time_end timeEnd,
       activity.enroll_deadline enrollDeadline,
       activity.audit_states auditStates,
       activity.create_time createTime,
@@ -29,7 +30,8 @@
     <result property="introduction" column="introduction"/>
     <result property="content" column="content"/>
     <result property="memberActivity" column="memberActivity"/>
-    <result property="time" column="time"/>
+    <result property="timeBegin" column="timeBegin"/>
+    <result property="timeEnd" column="timeEnd"/>
     <result property="enrollDeadline" column="enrollDeadline"/>
     <result property="auditStates" column="auditStates"/>
     <result property="createTime" column="createTime"/>
@@ -69,7 +71,8 @@
       introduction,
       content,
       member_activity,
-      `time`,
+      time_begin,
+      time_end,
       enroll_deadline,
       audit_states,
       create_time,
@@ -85,7 +88,8 @@
         #{introduction},
         #{content},
         #{memberActivity},
-        #{time},
+        #{timeBegin},
+        #{timeEnd}
         #{enrollDeadline},
         #{auditStates},
         #{createTime},
@@ -103,7 +107,8 @@
       activity.introduction,
       activity.content,
       activity.member_activity memberActivity,
-      activity.time,
+      activity.time_begin timeBegin,
+      activity.time_end timeEnd,
       activity.enroll_deadline enrollDeadline,
       activity.audit_states auditStates,
       activity.create_time createTime,
@@ -123,7 +128,8 @@
       introduction = #{introduction},
       content = #{content},
       member_activity = #{memberActivity},
-      time = #{time},
+      time_begin = #{timeBegin},
+      time_end = #{timeEnd},
       enroll_deadline = #{enrollDeadline},
       audit_states = #{auditStates},
       create_time = #{createTime},
