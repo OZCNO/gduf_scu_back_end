@@ -1,20 +1,16 @@
 package org.scu.union.controller;
 
 import io.swagger.annotations.ApiOperation;
-import java.util.List;
-import org.scu.activity.conf.AnnualRegStatus;
+import org.scu.club.conf.AnnualRegStatus;
 import org.scu.base.controller.BaseController;
 import org.scu.base.domain.BaseResponse;
-import org.scu.base.domain.PaginationResult;
 import org.scu.club.entity.AnnualRegistration;
 import org.scu.club.service.AnnualRegistrationService;
 import org.scu.club.vo.QAnnualRegistration;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**

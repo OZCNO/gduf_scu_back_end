@@ -6,6 +6,7 @@ import org.scu.club.entity.AnnualRegistration;
 import org.scu.club.mapper.AnnualRegistrationMapper;
 import org.scu.club.service.AnnualRegistrationService;
 import org.scu.club.vo.QAnnualRegistration;
+import org.scu.club.vo.VAnnualRegistration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,8 +29,14 @@ public class AnnualRegistrationServiceImpl implements AnnualRegistrationService 
   }
 
   @Override
+  @Deprecated
   public List<AnnualRegistration> list(QAnnualRegistration search) {
-    return annualRegistrationMapper.list(search);
+    return null;
+  }
+
+  @Override
+  public List<VAnnualRegistration> listDetail(QAnnualRegistration search) {
+    return annualRegistrationMapper.listDetail(search);
   }
 
   @Override

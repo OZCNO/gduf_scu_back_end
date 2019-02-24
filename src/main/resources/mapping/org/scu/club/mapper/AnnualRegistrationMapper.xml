@@ -15,14 +15,25 @@
     annual_reg.update_time updateTime
   </sql>
 
-  <select id="list" parameterType="org.scu.club.vo.QAnnualRegistration" resultType="org.scu.club.entity.AnnualRegistration">
+  <select id="listDetail" parameterType="org.scu.club.vo.QAnnualRegistration" resultType="org.scu.club.vo.VAnnualRegistration">
     SELECT
-      <include refid="allFields"/>
+      <include refid="allFields"/>,
+      club.`name` clubName,
+      teacher.`name` teacherName,
+      teahcer.concat teacherMobile
     FROM
-      annual_reg annual_reg
+      annual_reg annual_reg,
+      club club,
+      teacher teacher
     <if test="userId != null">
       ,club_admin club_admin
-      WHERE
+    </if>
+    WHERE
+      club.id = annual_reg.club_id
+    AND
+      teacher.id = club.teacher_id
+    <if test="userId != null">
+      AND
       club_admin.user_id = #{userId}
       AND
       annual_reg.club_id = club_admin.club_id

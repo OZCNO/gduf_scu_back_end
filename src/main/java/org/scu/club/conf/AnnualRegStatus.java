@@ -1,4 +1,4 @@
-package org.scu.activity.conf;
+package org.scu.club.conf;
 
 /**
  * Created by lynn on 2019/1/26

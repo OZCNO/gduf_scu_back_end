@@ -39,11 +39,11 @@ public class ActivityController extends BaseController {
   @ApiOperation(value = "获取活动信息列表", notes = "获取活动信息列表{type}为club或union", httpMethod = "GET")
   @GetMapping(value = "/{type}/activity")
   public BaseResponse listClubActivities(@PathVariable("type") String type,
-      @RequestParam(required = false) String name,
+      @RequestParam(required = false) Integer status,
       @RequestParam(required = false, defaultValue = "1") long page,
       @RequestParam(required = false, defaultValue = "10") long pageSize) {
     QActivity search = new QActivity();
-    search.setName(name);
+    search.setStatus(status);
     search.setPage(page);
     search.setPageSize(pageSize);
     List<VActivity> list;

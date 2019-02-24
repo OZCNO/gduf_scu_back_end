@@ -42,7 +42,10 @@
     from activity,club
     where
     1=1
-    AND club_union_id = club.id
+      AND club_union_id = club.id
+    <if test="status != null">
+      AND auditStates = #{status}
+    </if>
     limit #{startRecord}, #{endRecord}
   </select>
 
