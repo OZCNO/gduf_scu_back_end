@@ -78,7 +78,7 @@ public class StudentServiceImpl implements StudentService {
     student.setCode(item.getUsername());
     student.setEmail("");
     student.setMajorId(-1);
-    student.setSex(Gender.UNKNOW.getValue());
+    student.setSex(Gender.UNKNOW.getGender());
     student.setUserId(user.getId().intValue());
     studentMapper.insert(student);
     return user;

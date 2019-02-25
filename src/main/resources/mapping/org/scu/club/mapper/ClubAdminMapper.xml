@@ -6,8 +6,6 @@
   <sql id="allResult">
     <trim suffixOverrides=",">
       club_admin.id,
-      club_admin.username,
-      club_admin.`password`,
       club_admin.club_id clubId,
       club_admin.user_id userId,
       club_admin.avatar,

@@ -17,7 +17,7 @@ public class Student extends RoleInfo {
   /**
    * 性别 isNullAble:0
    */
-  private String sex;
+  private int sex;
 
   /**
    * 专业编号 isNullAble:0
@@ -55,11 +55,11 @@ public class Student extends RoleInfo {
     return this.name;
   }
 
-  public void setSex(String sex) {
+  public void setSex(int sex) {
     this.sex = sex;
   }
 
-  public String getSex() {
+  public Integer getSex() {
     return this.sex;
   }
 

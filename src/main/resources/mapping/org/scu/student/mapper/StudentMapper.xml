@@ -138,7 +138,7 @@
     select
       <include refid="allResult"></include>,
       club_student_mapping.department_id,
-      department.department_name,
+      department.name department_name,
       major.`name` major_name,
       institude.`name` institude_name
     from student
