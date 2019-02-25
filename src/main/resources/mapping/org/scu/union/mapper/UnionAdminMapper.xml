@@ -7,10 +7,10 @@
     <trim suffixOverrides=",">
       union_admin.id,
       union_admin.`name`,
-      union_admin.user_id,
+      union_admin.user_id userId,
       union_admin.avatar,
-      union_admin.create_time,
-      union_admin.update_time
+      union_admin.create_time createTime,
+      union_admin.update_time updateTime
     </trim>
   </sql>
 

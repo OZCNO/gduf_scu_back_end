@@ -6,10 +6,10 @@
   <sql id="allResult">
     <trim suffixOverrides=",">
       teacher_admin.id,
-      teacher_admin.user_id,
+      teacher_admin.user_id userId,
       teacher_admin.avatar,
-      teacher_admin.create_time,
-      teacher_admin.update_time
+      teacher_admin.create_time createTime,
+      teacher_admin.update_time updateTime
     </trim>
   </sql>
 

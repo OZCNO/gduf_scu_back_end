@@ -8,11 +8,11 @@
       club_admin.id,
       club_admin.username,
       club_admin.`password`,
-      club_admin.club_id,
-      club_admin.user_id,
+      club_admin.club_id clubId,
+      club_admin.user_id userId,
       club_admin.avatar,
-      club_admin.create_time,
-      club_admin.update_time
+      club_admin.create_time createTime,
+      club_admin.update_time updateTime
     </trim>
   </sql>
 
