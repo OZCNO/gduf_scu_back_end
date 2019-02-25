@@ -3,6 +3,7 @@ package org.scu.activity.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import org.scu.activity.conf.ActivityStatus;
 import org.scu.activity.conf.ActivityType;
 import org.scu.activity.entity.Activity;
@@ -14,6 +15,8 @@ import org.scu.base.domain.BaseResponse;
 import org.scu.base.domain.PaginationResult;
 import org.scu.activity.service.ActivityService;
 import org.scu.activity.vo.QActivity;
+import org.scu.user.conf.UserRole;
+import org.scu.user.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,16 +41,28 @@ public class ActivityController extends BaseController {
    */
   @ApiOperation(value = "获取活动信息列表", notes = "获取活动信息列表{type}为club或union", httpMethod = "GET")
   @GetMapping(value = "/{type}/activity")
-  public BaseResponse listClubActivities(@PathVariable("type") String type,
+  public BaseResponse listClubAndUnionActivities(@PathVariable("type") String type,
+      HttpServletRequest request,
       @RequestParam(required = false) Integer status,
+      @RequestParam(required = false) Integer clubId,
       @RequestParam(required = false, defaultValue = "1") long page,
       @RequestParam(required = false, defaultValue = "10") long pageSize) {
+    User loginUser = getLoginUser(request);
     QActivity search = new QActivity();
-    search.setStatus(status);
+    if (status != null) {
+      search.setStatus(status);
+    }
     search.setPage(page);
     search.setPageSize(pageSize);
     List<VActivity> list;
     if (type.equalsIgnoreCase(ActivityType.CLUB_ACTIVITY.getTypeName())) {
+      if (loginUser.getRole().equals(UserRole.CLUB_ADMIN.getCode())) {
+        search.setUserId(loginUser.getId());
+      } else {
+        if (clubId != null) {
+          search.setClubId(clubId);
+        }
+      }
       list = activityService.listActivities(search, ActivityType.CLUB_ACTIVITY.getCode());
     } else {
       list = activityService.listActivities(search, ActivityType.UNION_ACTIVITY.getCode());

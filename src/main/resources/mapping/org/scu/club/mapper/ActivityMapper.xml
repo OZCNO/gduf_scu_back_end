@@ -42,11 +42,19 @@
     select
     <include refid="allResult"></include>
     from activity,club
+    <if test="userId != null">
+      ,club_admin
+    </if>
     where
     1=1
       AND club_union_id = club.id
+      AND type = 2
     <if test="status != null">
-      AND auditStates = #{status}
+      AND audit_states = #{status}
+    </if>
+    <if test="userId != null">
+      AND user_id = #{userId}
+      AND club.id = club_admin.club_id
     </if>
     limit #{startRecord}, #{endRecord}
   </select>
