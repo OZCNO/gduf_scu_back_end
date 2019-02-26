@@ -9,7 +9,7 @@ public class QAnnualRegistration extends Pagination {
 
 //  private String name;
 
-  private int status;
+  private Integer status;
 
   private Long userId;
 
@@ -21,11 +21,11 @@ public class QAnnualRegistration extends Pagination {
     this.userId = userId;
   }
 
-  public int getStatus() {
+  public Integer getStatus() {
     return status;
   }
 
-  public void setStatus(int status) {
+  public void setStatus(Integer status) {
     this.status = status;
   }
 }

@@ -56,6 +56,6 @@ public class AnnualRegistrationServiceImpl implements AnnualRegistrationService 
 
   @Override
   public AnnualRegistration getById(long id) {
-    return null;
+    return annualRegistrationMapper.getById(id);
   }
 }

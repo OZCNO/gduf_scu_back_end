@@ -14,6 +14,15 @@
     annual_reg.create_time createTime,
     annual_reg.update_time updateTime
   </sql>
+  
+  <select id="getById" parameterType="long" resultType="org.scu.club.entity.AnnualRegistration">
+    SELECT
+    <include refid="allFields"/>
+    FROM
+    annual_reg annual_reg
+    WHERE
+    id = #{id}
+  </select>
 
   <select id="listDetail" parameterType="org.scu.club.vo.QAnnualRegistration" resultType="org.scu.club.vo.VAnnualRegistration">
     SELECT
