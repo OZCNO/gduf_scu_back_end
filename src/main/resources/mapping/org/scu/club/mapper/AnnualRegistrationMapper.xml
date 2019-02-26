@@ -20,7 +20,7 @@
       <include refid="allFields"/>,
       club.`name` clubName,
       teacher.`name` teacherName,
-      teahcer.concat teacherMobile
+      teacher.mobile teacherMobile
     FROM
       annual_reg annual_reg,
       club club,
@@ -32,6 +32,9 @@
       club.id = annual_reg.club_id
     AND
       teacher.id = club.teacher_id
+    <if test="status != null">
+      AND audit_status = #{status}
+    </if>
     <if test="userId != null">
       AND
       club_admin.user_id = #{userId}
@@ -46,12 +49,23 @@
 
   <select id="count" parameterType="org.scu.club.vo.QAnnualRegistration" resultType="long">
     SELECT
-    count(1)
+      count(1)
     FROM
-    annual_reg
+    annual_reg annual_reg,
+    club club,
+    teacher teacher
     <if test="userId != null">
       ,club_admin club_admin
-      WHERE
+    </if>
+    WHERE
+    club.id = annual_reg.club_id
+    AND
+    teacher.id = club.teacher_id
+    <if test="status != null">
+      AND audit_status = #{status}
+    </if>
+    <if test="userId != null">
+      AND
       club_admin.user_id = #{userId}
       AND
       annual_reg.club_id = club_admin.club_id

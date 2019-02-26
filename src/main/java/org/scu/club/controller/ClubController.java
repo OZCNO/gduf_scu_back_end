@@ -89,6 +89,7 @@ public class ClubController extends BaseController {
   @GetMapping("/club/annual/registration")
   @ApiOperation(value = "社联/社团获取年度注册表列表", notes = "获取年度注册表列表", httpMethod = "GET")
   public BaseResponse listAnnualRegistration(HttpServletRequest request,
+      @RequestParam(required = false) Integer status,
       @RequestParam(required = false, defaultValue = "1") long page,
       @RequestParam(required = false, defaultValue = "10") long pageSize) {
     User loginUser = getLoginUser(request);
@@ -99,6 +100,9 @@ public class ClubController extends BaseController {
 
     } else {
       return FORBIDDEN;
+    }
+    if (status != null) {
+      search.setStatus(status);
     }
     search.setPage(page);
     search.setPageSize(pageSize);
