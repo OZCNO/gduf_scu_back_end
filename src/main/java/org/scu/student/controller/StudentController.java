@@ -10,9 +10,11 @@ import org.scu.student.service.StudentService;
 import org.scu.student.vo.QRegStudent;
 import org.scu.student.vo.QStudent;
 import org.scu.user.conf.UserRole;
+import org.scu.user.entity.RoleInfo;
 import org.scu.user.entity.User;
 import org.scu.user.entity.UserLoginToken;
 import org.scu.user.service.UserLoginTokenService;
+import org.scu.user.service.UserService;
 import org.scu.user.vo.LoginCredential;
 import org.scu.user.vo.LoginResult;
 import org.scu.user.vo.LoginUserInfo;
@@ -33,6 +35,9 @@ public class StudentController extends BaseController {
 
   @Autowired
   private UserLoginTokenService userLoginTokenService;
+
+  @Autowired
+  private UserService userService;
 
   @PostMapping("/reg")
   public BaseResponse reg(@RequestBody QRegStudent qRegStudent) {
@@ -58,6 +63,15 @@ public class StudentController extends BaseController {
     User loginUser = getLoginUser(request);
     if (!loginUser.getRole().equals(UserRole.STUDENT.getCode())) {
       return FORBIDDEN;
+    }
+    RoleInfo roleInfo = getUserRoleInfo(loginUser);
+    if (roleInfo != null) {
+      if (roleInfo instanceof Student) {
+        Student student = (Student) roleInfo;
+        if(!student.getId().equals(studentId)) {
+          return FORBIDDEN;
+        }
+      }
     }
     System.out.println("=====================3");
     Recruit item = recruit == null ? new Recruit() : recruit;

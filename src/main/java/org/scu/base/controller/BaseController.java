@@ -7,6 +7,7 @@ import org.scu.auth.vo.QUserMultiDataAuth;
 import org.scu.base.conf.StatusCode;
 import org.scu.base.conf.TargetType;
 import org.scu.user.conf.UserRole;
+import org.scu.user.entity.RoleInfo;
 import org.scu.user.entity.User;
 import org.scu.user.service.UserService;
 import org.scu.base.conf.ResponseMsg;
@@ -52,6 +53,10 @@ public class BaseController {
     Long id = getLoginUserId(request);
     User user = userSerivce.getById(id);
     return user;
+  }
+
+  public RoleInfo getUserRoleInfo(User user) {
+    return userSerivce.getRoleInfo(user);
   }
 
   public BaseResponse response(Object data) {
