@@ -71,7 +71,12 @@ public class ClubController extends BaseController {
   @PostMapping("/club/{id}/annual/registration")
   @ApiOperation(value = "提交年度注册表", notes = "提交年度注册表", httpMethod = "GET")
   public BaseResponse applyAnnualRegistration(@PathVariable("id") Integer id,
+      HttpServletRequest request,
       @RequestBody AnnualRegistration info) {
+    User loginUser = getLoginUser(request);
+    if (!loginUser.getRole().equals(UserRole.CLUB_ADMIN.getCode())) {
+      return FORBIDDEN;
+    }
     info.setAuditStatus(AnnualRegStatus.UNDER_REVIEW.getCode());
     int result = annualRegistrationService.insert(info);
     return response(result, info);

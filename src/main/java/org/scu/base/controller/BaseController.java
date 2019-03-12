@@ -6,16 +6,14 @@ import org.scu.auth.vo.QUserDataAuth;
 import org.scu.auth.vo.QUserMultiDataAuth;
 import org.scu.base.conf.StatusCode;
 import org.scu.base.conf.TargetType;
+import org.scu.user.conf.UserRole;
 import org.scu.user.entity.User;
 import org.scu.user.service.UserService;
 import org.scu.base.conf.ResponseMsg;
 import org.scu.base.conf.ResponseMsg.Query;
 import org.scu.base.domain.BaseResponse;
-
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,55 +80,55 @@ public class BaseController {
     return resp;
   }
 
-  public boolean canRead(HttpServletRequest request, TargetType targetType, Long targetId) {
-    User user = getLoginUser(request);
-    if (Role.ADMIN.getType().equals(user.getRole())) {
-      return true;
-    }
-    Long currentUserId = getLoginUserId(request);
-    QUserDataAuth authSearch = new QUserDataAuth();
-    authSearch.setUserId(currentUserId);
-    authSearch.setTargetType(targetType.getType());
-    authSearch.setTargetId(targetId);
-    boolean flag = userDataAuthService.canRead(authSearch);
-    return flag;
-  }
-
-  public boolean canWrite(HttpServletRequest request, TargetType targetType, Long targetId) {
-    User user = getLoginUser(request);
-    if (Role.ADMIN.getType().equals(user.getRole())) {
-      return true;
-    }
-    Long currentUserId = getLoginUserId(request);
-    QUserDataAuth authSearch = new QUserDataAuth();
-    authSearch.setUserId(currentUserId);
-    authSearch.setTargetType(targetType.getType());
-    authSearch.setTargetId(targetId);
-    boolean flag = userDataAuthService.canWrite(authSearch);
-    return flag;
-  }
-
-  public List<Long> filterIds(HttpServletRequest request,
-                              TargetType targetType,
-                              List<Long> ids,
-                              Role role) {
-    User user = getLoginUser(request);
-    if (Role.ADMIN.getType().equals(user.getRole())) {
-      return ids;
-    }
-    Long userId = user.getId();
-    QUserMultiDataAuth search = new QUserMultiDataAuth();
-    search.setRole(role.getType());
-    search.setTargetIds(ids);
-    search.setTargetType(targetType.getType());
-    search.setUserId(userId);
-    List<Long> newIds = userDataAuthService.filterIds(search);
-    return newIds;
-  }
+//  public boolean canRead(HttpServletRequest request, TargetType targetType, Long targetId) {
+//    User user = getLoginUser(request);
+//    if (UserRole.UNION_ADMIN.getCode().equals(user.getRole())) {
+//      return true;
+//    }
+//    Long currentUserId = getLoginUserId(request);
+//    QUserDataAuth authSearch = new QUserDataAuth();
+//    authSearch.setUserId(currentUserId);
+//    authSearch.setTargetType(targetType.getType());
+//    authSearch.setTargetId(targetId);
+//    boolean flag = userDataAuthService.canRead(authSearch);
+//    return flag;
+//  }
+//
+//  public boolean canWrite(HttpServletRequest request, TargetType targetType, Long targetId) {
+//    User user = getLoginUser(request);
+//    if (UserRole.UNION_ADMIN.getCode().equals(user.getRole())) {
+//      return true;
+//    }
+//    Long currentUserId = getLoginUserId(request);
+//    QUserDataAuth authSearch = new QUserDataAuth();
+//    authSearch.setUserId(currentUserId);
+//    authSearch.setTargetType(targetType.getType());
+//    authSearch.setTargetId(targetId);
+//    boolean flag = userDataAuthService.canWrite(authSearch);
+//    return flag;
+//  }
+//
+//  public List<Long> filterIds(HttpServletRequest request,
+//                              TargetType targetType,
+//                              List<Long> ids,
+//                              Role role) {
+//    User user = getLoginUser(request);
+//    if (UserRole.UNION_ADMIN.getCode().equals(user.getRole())) {
+//      return ids;
+//    }
+//    Long userId = user.getId();
+//    QUserMultiDataAuth search = new QUserMultiDataAuth();
+//    search.setRole(role.getType());
+//    search.setTargetIds(ids);
+//    search.setTargetType(targetType.getType());
+//    search.setUserId(userId);
+//    List<Long> newIds = userDataAuthService.filterIds(search);
+//    return newIds;
+//  }
 
   public boolean isAdmin(HttpServletRequest request) {
     User user = getLoginUser(request);
-    if (Role.ADMIN.getType().equals(user.getRole())) {
+    if (UserRole.UNION_ADMIN.getCode().equals(user.getRole())) {
       return true;
     }
     return false;

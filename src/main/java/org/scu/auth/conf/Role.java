@@ -6,7 +6,7 @@ package org.scu.auth.conf;
   public enum Role {
 
     ADMIN(Integer.valueOf(0), "管理员"),
-    DEFAULT(Integer.valueOf(1), "普通客户");
+    DEFAULT(Integer.valueOf(1), "普通用户");
 
     Role(Integer type, String name) {
       this.type = type;

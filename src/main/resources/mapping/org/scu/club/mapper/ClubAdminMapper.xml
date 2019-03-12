@@ -16,10 +16,13 @@
 
   <select id="getByUserId" resultType="org.scu.club.entity.ClubAdmin">
     SELECT
-      <include refid="allResult"></include>
+      <include refid="allResult"></include>,
+      club.name clubName
     FROM
-      club_admin
+    club_admin club_admin, club club
     WHERE
-    user_id = #{userId}
+      user_id = #{userId}
+    AND
+      club.id = club_admin.club_id
   </select>
 </mapper>
