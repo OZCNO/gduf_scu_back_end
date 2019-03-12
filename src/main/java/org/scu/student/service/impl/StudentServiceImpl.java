@@ -2,8 +2,13 @@ package org.scu.student.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import org.scu.activity.conf.ActivityStatus;
+import org.scu.activity.conf.ActivityType;
+import org.scu.activity.entity.Activity;
+import org.scu.activity.mapper.ActivityMapper;
 import org.scu.club.vo.VVip;
 import org.scu.student.conf.Gender;
+import org.scu.student.entity.Recruit;
 import org.scu.student.entity.Student;
 import org.scu.student.mapper.StudentMapper;
 import org.scu.student.service.StudentService;
@@ -30,6 +35,9 @@ public class StudentServiceImpl implements StudentService {
 
   @Autowired
   private UserMapper userMapper;
+
+  @Autowired
+  private ActivityMapper activityMapper;
 
   @Override
   public List<VVip> listClubVips(QStudent search) {
@@ -100,7 +108,34 @@ public class StudentServiceImpl implements StudentService {
   }
 
   public String encryptPass(String password) {
-    String encryptPass = MD5Util.encrypt(UserConf.DEFAULT_ENCRYPT_PREFIX_SALT + password + UserConf.DEFAULT_ENCRYPT_SUFFIXSALT);
+    String encryptPass = MD5Util.encrypt(
+        UserConf.DEFAULT_ENCRYPT_PREFIX_SALT + password + UserConf.DEFAULT_ENCRYPT_SUFFIXSALT);
     return encryptPass;
+  }
+
+  @Override
+  @Transactional
+  public int joinActivity(Recruit item) {
+    Activity activity = activityMapper.getById(item.getActivityId());
+    if (activity != null && activity.getAuditStates() == ActivityStatus.PUBLISHED.getCode()) {
+      Date current = new Date();
+      item.setTime(current);
+      item.setCreateTime(current);
+      item.setUpdateTime(current);
+      if (activity.getMemberActivity() == 2) {
+        // recruit activity
+        int result = studentMapper.joinActivity(item);
+        if (result > 0) {
+          System.out.println("=====================");
+          item.setStatus(ActivityStatus.UNDER_REVIEW.getCode());
+          return studentMapper.joinClub(item);
+        }
+      } else {
+        // normal activity
+        System.out.println("=====================2");
+        return studentMapper.joinActivity(item);
+      }
+    }
+    return 0;
   }
 }

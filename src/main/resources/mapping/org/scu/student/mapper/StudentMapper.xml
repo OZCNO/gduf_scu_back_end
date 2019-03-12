@@ -215,4 +215,29 @@
     user_id = #{userId}
   </select>
 
+  <insert id="joinActivity" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO
+      activity_enroll
+    SET
+      activity_id = #{activityId},
+      student_id = #{studentId},
+      `time` = #{time},
+      create_time = #{createTime},
+      update_time = #{updateTime}
+  </insert>
+
+  <insert id="joinClub" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO
+      recruit_enroll
+    SET
+      activity_id = #{activityId},
+      student_id = #{studentId},
+      introduce = #{introduce},
+      reason = #{reason},
+      image = #{image},
+      `time` = #{time},
+      `status` = #{status},
+      create_time = #{createTime},
+      update_time = #{updateTime}
+  </insert>
 </mapper>

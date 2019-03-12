@@ -33,5 +33,5 @@ mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
-logging:
-  config: classpath:logback.xml
+#logging:
+#  config: classpath:logback.xml

@@ -1,10 +1,15 @@
 package org.scu.student.controller;
 
+import io.swagger.annotations.ApiOperation;
+import javax.servlet.http.HttpServletRequest;
 import org.scu.base.controller.BaseController;
 import org.scu.base.domain.BaseResponse;
+import org.scu.student.entity.Recruit;
 import org.scu.student.entity.Student;
 import org.scu.student.service.StudentService;
 import org.scu.student.vo.QRegStudent;
+import org.scu.student.vo.QStudent;
+import org.scu.user.conf.UserRole;
 import org.scu.user.entity.User;
 import org.scu.user.entity.UserLoginToken;
 import org.scu.user.service.UserLoginTokenService;
@@ -12,6 +17,7 @@ import org.scu.user.vo.LoginCredential;
 import org.scu.user.vo.LoginResult;
 import org.scu.user.vo.LoginUserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +30,7 @@ public class StudentController extends BaseController {
 
   @Autowired
   private StudentService studentService;
-  
+
   @Autowired
   private UserLoginTokenService userLoginTokenService;
 
@@ -41,5 +47,23 @@ public class StudentController extends BaseController {
     loginResult.setCredential(new LoginCredential(user.getId(), loginToken.getToken()));
     loginResult.setUser(new LoginUserInfo(user));
     return response(loginResult);
+  }
+
+  @ApiOperation(value = "学生参加活动", notes = "学生参加活动", httpMethod = "POST")
+  @PostMapping("/student/{studentId}/activity/{activityId}")
+  public BaseResponse joinActivity(@PathVariable("studentId") Integer studentId,
+      @PathVariable("activityId") Integer activityId,
+      @RequestBody(required = false) Recruit recruit,
+      HttpServletRequest request) {
+    User loginUser = getLoginUser(request);
+    if (!loginUser.getRole().equals(UserRole.STUDENT.getCode())) {
+      return FORBIDDEN;
+    }
+    System.out.println("=====================3");
+    Recruit item = recruit == null ? new Recruit() : recruit;
+    item.setActivityId(activityId);
+    item.setStudentId(studentId);
+    int result = studentService.joinActivity(item);
+    return response(result, null);
   }
 }

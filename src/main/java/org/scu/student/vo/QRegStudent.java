@@ -1,11 +1,12 @@
 package org.scu.student.vo;
 
+import org.scu.base.vo.Pagination;
 import org.scu.student.entity.Student;
 
 /**
  * Created by lynn on 2019/2/4
  */
-public class QRegStudent{
+public class QRegStudent extends Pagination {
 
   private String username;
 

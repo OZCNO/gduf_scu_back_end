@@ -1,5 +1,6 @@
 package org.scu.student.vo;
 
+import java.util.Date;
 import org.scu.base.vo.Pagination;
 
 /**
