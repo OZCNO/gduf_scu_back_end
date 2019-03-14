@@ -13,6 +13,16 @@ public class QActivity extends Pagination {
 
   private Integer clubId;
 
+  private Integer memberActivity;
+
+  public Integer getMemberActivity() {
+    return memberActivity;
+  }
+
+  public void setMemberActivity(Integer memberActivity) {
+    this.memberActivity = memberActivity;
+  }
+
   public Integer getClubId() {
     return clubId;
   }

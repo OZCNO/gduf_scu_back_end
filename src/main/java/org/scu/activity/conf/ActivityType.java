@@ -6,7 +6,8 @@ package org.scu.activity.conf;
 public enum ActivityType {
 
   UNION_ACTIVITY(1, "union"),
-  CLUB_ACTIVITY(2, "club");
+  CLUB_ACTIVITY(2, "club"),
+  All(0, "all");
 
   ActivityType(int code, String typeName) {
     this.code = code;

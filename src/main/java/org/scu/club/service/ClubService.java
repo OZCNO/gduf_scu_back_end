@@ -12,4 +12,6 @@ import org.scu.club.vo.VClub;
 public interface ClubService extends BaseDBService<QClub, Club>{
 
   List<VClub> listClubs(QClub search);
+
+  int updateVipStatus(Integer clubId, Integer studentId);
 }

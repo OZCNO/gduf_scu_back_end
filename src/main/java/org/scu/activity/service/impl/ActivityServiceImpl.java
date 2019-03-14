@@ -24,8 +24,10 @@ public class ActivityServiceImpl implements ActivityService {
   public List<VActivity> listActivities(QActivity search, int type) {
     if (type == ActivityType.UNION_ACTIVITY.getCode()) {
       return activityMapper.listUnionActivities(search);
-    } else {
+    } else if (type == ActivityType.CLUB_ACTIVITY.getCode()) {
       return activityMapper.listClubActivities(search);
+    } else {
+      return activityMapper.listAll(search);
     }
   }
 

@@ -37,6 +37,27 @@ public class ActivityController extends BaseController {
   private ActivityService activityService;
 
   /**
+   * 学生获取活动
+   */
+  @ApiOperation(value = "学生获取活动信息列表", notes = "学生获取活动信息列表", httpMethod = "GET")
+  @GetMapping(value = "/activity")
+  public BaseResponse listActivities(HttpServletRequest request,
+      @RequestParam(required = false) Integer type,
+      @RequestParam(required = false, defaultValue = "1") long page,
+      @RequestParam(required = false, defaultValue = "10") long pageSize) {
+    User loginUser = getLoginUser(request);
+    if (!loginUser.getRole().equals(UserRole.STUDENT.getCode())) {
+      return FORBIDDEN;
+    }
+    QActivity search = new QActivity();
+    search.setMemberActivity(type);
+    search.setPage(page);
+    search.setPageSize(pageSize);
+    List<VActivity> activities = activityService.listActivities(search, ActivityType.All.getCode());
+    return response(activities);
+  }
+
+  /**
    * 获取社团社联活动列表
    */
   @ApiOperation(value = "获取活动信息列表", notes = "获取活动信息列表{type}为club或union", httpMethod = "GET")

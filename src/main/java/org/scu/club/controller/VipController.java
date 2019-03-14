@@ -2,14 +2,19 @@ package org.scu.club.controller;
 
 import io.swagger.annotations.ApiOperation;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import org.scu.base.controller.BaseController;
 import org.scu.base.domain.BaseResponse;
 import org.scu.base.domain.PaginationResult;
 import org.scu.base.vo.Pagination;
+import org.scu.club.entity.ClubAdmin;
 import org.scu.club.vo.VVip;
 import org.scu.student.mapper.StudentMapper;
 import org.scu.student.service.StudentService;
 import org.scu.student.vo.QStudent;
+import org.scu.user.entity.RoleInfo;
+import org.scu.user.entity.User;
+import org.scu.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +32,9 @@ public class VipController extends BaseController {
 
   @Autowired
   private StudentService studentService;
+
+  @Autowired
+  private UserService userService;
 
   /**
    * 获取会员/干事信息
@@ -64,4 +72,20 @@ public class VipController extends BaseController {
   public BaseResponse removeVipInfo(@PathVariable("id") Long id) {
     return null;
   }
+
+  /**
+   * 审核入团
+   */
+  @PutMapping("/club/student/{studentId}/status")
+  public BaseResponse audit(@PathVariable("studentId") Integer studentId,
+      HttpServletRequest request) {
+    User loginUser = getLoginUser(request);
+    RoleInfo roleInfo = userService.getRoleInfo(loginUser);
+    if (roleInfo instanceof ClubAdmin) {
+      ClubAdmin clubAdmin = (ClubAdmin)roleInfo;
+
+    }
+    return FORBIDDEN;
+  }
+
 }

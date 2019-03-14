@@ -149,4 +149,33 @@
       `id` = #{id} and
     </trim>
   </update>
+
+  <select id="listAll" parameterType="org.scu.activity.vo.QActivity" resultMap="activityMap">
+    select
+    <include refid="allResult"></include>
+    from activity,`union`
+    where
+    1=1
+    AND club_union_id = `union`.id
+    AND `type` = 1
+    AND audit_states = 4
+    <if test="memberActivity != null">
+      AND activity.member_activity = #{memberActivity}
+    </if>
+    UNION ALL
+    select
+    <include refid="allResult"></include>
+    FROM
+    activity,
+    club,
+    WHERE
+    1 = 1
+    AND club_union_id = club.id
+    AND `type` = 2
+    AND audit_states = 4
+    <if test="memberActivity != null">
+      AND activity.member_activity = #{memberActivity}
+    </if>
+    limit #{startRecord}, #{endRecord}
+  </select>
 </mapper>

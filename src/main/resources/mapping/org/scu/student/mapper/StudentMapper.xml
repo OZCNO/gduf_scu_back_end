@@ -228,13 +228,14 @@
 
   <insert id="joinClub" useGeneratedKeys="true" keyProperty="id">
     INSERT INTO
-      recruit_enroll
+      club_student_mapping
     SET
-      activity_id = #{activityId},
+      club_id = #{clubId},
       student_id = #{studentId},
       introduce = #{introduce},
       reason = #{reason},
       image = #{image},
+      role = #{role},
       `time` = #{time},
       `status` = #{status},
       create_time = #{createTime},

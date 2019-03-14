@@ -53,4 +53,9 @@ public class ClubServiceImpl implements ClubService {
   public Club getById(long id) {
     return null;
   }
+
+  @Override
+  public int updateVipStatus(Integer clubId, Integer studentId) {
+    return clubMapper.updateVipStatus(clubId, studentId);
+  }
 }

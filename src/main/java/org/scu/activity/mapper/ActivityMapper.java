@@ -14,4 +14,6 @@ public interface ActivityMapper extends BaseMapper<QActivity, Activity> {
   List<VActivity> listClubActivities(QActivity search);
 
   List<VActivity> listUnionActivities(QActivity search);
+
+  List<VActivity> listAll(QActivity search);
 }

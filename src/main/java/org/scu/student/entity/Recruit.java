@@ -10,6 +10,8 @@ public class Recruit {
 
   private Integer id;
 
+  private Integer clubId;
+
   private Integer activityId;
 
   private Integer studentId;
@@ -106,5 +108,13 @@ public class Recruit {
 
   public void setUpdateTime(Date updateTime) {
     this.updateTime = updateTime;
+  }
+
+  public Integer getClubId() {
+    return clubId;
+  }
+
+  public void setClubId(Integer clubId) {
+    this.clubId = clubId;
   }
 }

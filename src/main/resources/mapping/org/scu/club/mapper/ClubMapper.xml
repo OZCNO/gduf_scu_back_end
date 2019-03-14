@@ -135,4 +135,15 @@
     </trim>
   </sql>
 
+  <update id="updateVipStatus">
+    UPDATE
+    club_student_mapping
+    SET
+      status = 1
+    WHERE
+      club_id = #{clubId}
+    AND
+      studentId = #{studentId}
+  </update>
+
 </mapper>

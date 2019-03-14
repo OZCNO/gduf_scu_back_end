@@ -73,7 +73,6 @@ public class StudentController extends BaseController {
         }
       }
     }
-    System.out.println("=====================3");
     Recruit item = recruit == null ? new Recruit() : recruit;
     item.setActivityId(activityId);
     item.setStudentId(studentId);

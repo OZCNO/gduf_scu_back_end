@@ -122,17 +122,20 @@ public class StudentServiceImpl implements StudentService {
       item.setTime(current);
       item.setCreateTime(current);
       item.setUpdateTime(current);
+      if (activity.getType() == ActivityType.CLUB_ACTIVITY.getCode()) {
+        item.setClubId(activity.getClubUnionId());
+      } else {
+        return 0;
+      }
       if (activity.getMemberActivity() == 2) {
         // recruit activity
         int result = studentMapper.joinActivity(item);
         if (result > 0) {
-          System.out.println("=====================");
           item.setStatus(ActivityStatus.UNDER_REVIEW.getCode());
           return studentMapper.joinClub(item);
         }
       } else {
         // normal activity
-        System.out.println("=====================2");
         return studentMapper.joinActivity(item);
       }
     }
