@@ -13,5 +13,5 @@ public interface ClubService extends BaseDBService<QClub, Club>{
 
   List<VClub> listClubs(QClub search);
 
-  int updateVipStatus(Integer clubId, Integer studentId);
+  int RecruitVips(Integer clubId, Integer studentId);
 }

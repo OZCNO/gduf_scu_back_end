@@ -8,6 +8,7 @@ import org.scu.base.domain.BaseResponse;
 import org.scu.base.domain.PaginationResult;
 import org.scu.base.vo.Pagination;
 import org.scu.club.entity.ClubAdmin;
+import org.scu.club.service.ClubService;
 import org.scu.club.vo.VVip;
 import org.scu.student.mapper.StudentMapper;
 import org.scu.student.service.StudentService;
@@ -35,6 +36,9 @@ public class VipController extends BaseController {
 
   @Autowired
   private UserService userService;
+
+  @Autowired
+  private ClubService clubService;
 
   /**
    * 获取会员/干事信息
@@ -83,7 +87,8 @@ public class VipController extends BaseController {
     RoleInfo roleInfo = userService.getRoleInfo(loginUser);
     if (roleInfo instanceof ClubAdmin) {
       ClubAdmin clubAdmin = (ClubAdmin)roleInfo;
-
+      int result = clubService.RecruitVips(clubAdmin.getClubId(), studentId);
+      response(result, null);
     }
     return FORBIDDEN;
   }

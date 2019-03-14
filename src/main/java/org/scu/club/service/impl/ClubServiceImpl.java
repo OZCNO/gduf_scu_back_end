@@ -55,7 +55,7 @@ public class ClubServiceImpl implements ClubService {
   }
 
   @Override
-  public int updateVipStatus(Integer clubId, Integer studentId) {
+  public int RecruitVips(Integer clubId, Integer studentId) {
     return clubMapper.updateVipStatus(clubId, studentId);
   }
 }
