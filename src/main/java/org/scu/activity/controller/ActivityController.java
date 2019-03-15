@@ -15,8 +15,11 @@ import org.scu.base.domain.BaseResponse;
 import org.scu.base.domain.PaginationResult;
 import org.scu.activity.service.ActivityService;
 import org.scu.activity.vo.QActivity;
+import org.scu.student.entity.Student;
 import org.scu.user.conf.UserRole;
+import org.scu.user.entity.RoleInfo;
 import org.scu.user.entity.User;
+import org.scu.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,12 +39,16 @@ public class ActivityController extends BaseController {
   @Autowired
   private ActivityService activityService;
 
+  @Autowired
+  private UserService userService;
+
   /**
    * 学生获取活动
    */
   @ApiOperation(value = "学生获取活动信息列表", notes = "学生获取活动信息列表", httpMethod = "GET")
   @GetMapping(value = "/activity")
   public BaseResponse listActivities(HttpServletRequest request,
+      @RequestParam(required = false, defaultValue = "false") String self,
       @RequestParam(required = false) Integer type,
       @RequestParam(required = false, defaultValue = "1") long page,
       @RequestParam(required = false, defaultValue = "10") long pageSize) {
@@ -50,6 +57,11 @@ public class ActivityController extends BaseController {
       return FORBIDDEN;
     }
     QActivity search = new QActivity();
+    if (new Boolean(self)) {
+      RoleInfo roleInfo = userService.getRoleInfo(loginUser);
+      Student student = (Student) roleInfo;
+      search.setStudentId(student.getId());
+    }
     search.setMemberActivity(type);
     search.setPage(page);
     search.setPageSize(pageSize);

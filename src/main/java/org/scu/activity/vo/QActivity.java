@@ -15,6 +15,16 @@ public class QActivity extends Pagination {
 
   private Integer memberActivity;
 
+  private Integer StudentId;
+
+  public Integer getStudentId() {
+    return StudentId;
+  }
+
+  public void setStudentId(Integer studentId) {
+    StudentId = studentId;
+  }
+
   public Integer getMemberActivity() {
     return memberActivity;
   }

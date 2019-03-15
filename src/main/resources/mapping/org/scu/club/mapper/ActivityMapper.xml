@@ -154,6 +154,9 @@
     select
     <include refid="allResult"></include>
     from activity,`union`
+    <if test="studentId != null">
+      ,activity_enroll activity_enroll
+    </if>
     where
     1=1
     AND club_union_id = `union`.id
@@ -162,12 +165,19 @@
     <if test="memberActivity != null">
       AND activity.member_activity = #{memberActivity}
     </if>
+    <if test="studentId != null">
+      AND activity_enroll.activity_id = activity.id
+      AND activity_enroll.studentId = #{studentId}
+    </if>
     UNION ALL
     select
     <include refid="allResult"></include>
     FROM
     activity,
-    club,
+    club
+    <if test="studentId != null">
+      ,activity_enroll activity_enroll
+    </if>
     WHERE
     1 = 1
     AND club_union_id = club.id
@@ -175,6 +185,10 @@
     AND audit_states = 4
     <if test="memberActivity != null">
       AND activity.member_activity = #{memberActivity}
+    </if>
+    <if test="studentId != null">
+      AND activity_enroll.activity_id = activity.id
+      AND activity_enroll.studentId = #{studentId}
     </if>
     limit #{startRecord}, #{endRecord}
   </select>
