@@ -10,6 +10,7 @@
     annual_reg.summary,
     annual_reg.plan,
     annual_reg.`comment`,
+    annual_reg.reason,
     annual_reg.audit_status auditStatus,
     annual_reg.create_time createTime,
     annual_reg.update_time updateTime
@@ -28,6 +29,7 @@
     SELECT
       <include refid="allFields"/>,
       club.`name` clubName,
+      club_type.`name` clubType,
       teacher.`name` teacherName,
       teacher.mobile teacherMobile
     FROM
@@ -41,6 +43,8 @@
       club.id = annual_reg.club_id
     AND
       teacher.id = club.teacher_id
+    AND
+      club.club_type = club_type.id
     <if test="status != null">
       AND audit_status = #{status}
     </if>
@@ -91,6 +95,7 @@
       plan,
       comment,
       audit_status,
+      reason,
       create_time,
       update_time,
     </trim>
@@ -104,6 +109,7 @@
       #{plan},
       #{comment},
       #{auditStatus},
+      #{reason},
       #{createTime},
       #{updateTime},
     </trim>
@@ -120,6 +126,7 @@
       plan = #{plan},
       comment = #{comment},
       audit_status = #{auditStatus},
+      reason = #{reason},
       create_time = #{createTime},
       update_time = #{updateTime},
     </trim>

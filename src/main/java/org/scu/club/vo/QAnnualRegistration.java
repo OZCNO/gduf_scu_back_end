@@ -13,6 +13,26 @@ public class QAnnualRegistration extends Pagination {
 
   private Long userId;
 
+  private String reason;
+
+  private String clubType;
+
+  public String getClubType() {
+    return clubType;
+  }
+
+  public void setClubType(String clubType) {
+    this.clubType = clubType;
+  }
+
+  public String getReason() {
+    return reason;
+  }
+
+  public void setReason(String reason) {
+    this.reason = reason;
+  }
+
   public Long getUserId() {
     return userId;
   }

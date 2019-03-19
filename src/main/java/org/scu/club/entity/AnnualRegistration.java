@@ -20,6 +20,11 @@ public class AnnualRegistration {
 
   private String comment;
 
+  /**
+   * 审核建议/不通过原因
+   */
+  private String reason;
+
   private int auditStatus;
 
   private Date createTime;
@@ -96,5 +101,13 @@ public class AnnualRegistration {
 
   public void setUpdateTime(Date updateTime) {
     this.updateTime = updateTime;
+  }
+
+  public String getReason() {
+    return reason;
+  }
+
+  public void setReason(String reason) {
+    this.reason = reason;
   }
 }

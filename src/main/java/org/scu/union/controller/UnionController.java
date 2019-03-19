@@ -45,6 +45,7 @@ public class UnionController extends BaseController {
         if (item.getStatus() == AnnualRegStatus.NOT_PASS.getCode()
             || item.getStatus() == AnnualRegStatus.PASS.getCode()) {
           annualRegistration.setAuditStatus(item.getStatus());
+          annualRegistration.setReason(item.getReason());
           int result = annualRegistrationService.update(annualRegistration);
           return response(result, null);
         }
