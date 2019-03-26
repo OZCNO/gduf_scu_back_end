@@ -7,6 +7,7 @@ import org.scu.base.controller.BaseController;
 import org.scu.base.domain.BaseResponse;
 import org.scu.base.domain.PaginationResult;
 import org.scu.base.vo.Pagination;
+import org.scu.club.conf.AnnualRegStatus;
 import org.scu.club.entity.ClubAdmin;
 import org.scu.club.service.ClubService;
 import org.scu.club.vo.VVip;
@@ -48,9 +49,13 @@ public class VipController extends BaseController {
   public BaseResponse listVips(@PathVariable("id") Integer clubId,
       @RequestParam(required = false) String name,
       @RequestParam(required = false) Integer role,
+      @RequestParam(required = false) Integer status,
       @RequestParam(required = false, defaultValue = "1") long page,
       @RequestParam(required = false, defaultValue = "10") long pageSize) {
     QStudent search = new QStudent();
+    if (status.equals(1) || status.equals(0)) {
+      search.setStatus(status);
+    }
     search.setClubId(clubId);
     search.setRole(role);
     search.setName(name);

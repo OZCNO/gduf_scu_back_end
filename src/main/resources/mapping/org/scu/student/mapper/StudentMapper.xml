@@ -166,6 +166,9 @@
     <if test="role != null">
       AND club_student_mapping.role = #{role}
     </if>
+    <if test="status != null">
+      AND club_student_mapping.status = #{status}
+    </if>
     limit #{startRecord}, #{endRecord}
   </select>
 
@@ -204,6 +207,9 @@
     </if>
     <if test="role != null">
       AND club_student_mapping.role = #{role}
+    </if>
+    <if test="status != null">
+      AND club_student_mapping.status = #{status}
     </if>
   </select>
 

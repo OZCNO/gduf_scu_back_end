@@ -14,6 +14,17 @@ public class QStudent extends Pagination {
 
   private Integer role;
 
+  // 审核状态
+  private Integer status;
+
+  public Integer getStatus() {
+    return status;
+  }
+
+  public void setStatus(Integer status) {
+    this.status = status;
+  }
+
   public Integer getRole() {
     return role;
   }
