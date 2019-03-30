@@ -35,7 +35,8 @@
     FROM
       annual_reg annual_reg,
       club club,
-      teacher teacher
+      teacher teacher,
+      club_type
     <if test="userId != null">
       ,club_admin club_admin
     </if>
