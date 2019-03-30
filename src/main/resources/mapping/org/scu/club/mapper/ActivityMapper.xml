@@ -104,7 +104,7 @@
         #{timeEnd},
         #{enrollDeadline},
         #{auditStates},
-        #{moeny},
+        #{money},
         #{createTime},
         #{updateTime},
       </trim>
