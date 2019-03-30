@@ -1,6 +1,7 @@
 package org.scu.activity.entity;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 社团活动
@@ -35,6 +36,16 @@ public class Activity {
   private String introduction;
 
   private String address;
+
+  private List<Money> moneyUse;
+
+  public List<Money> getMoneyUse() {
+    return moneyUse;
+  }
+
+  public void setMoneyUse(List<Money> moneyUse) {
+    this.moneyUse = moneyUse;
+  }
 
   public String getAddress() {
     return address;

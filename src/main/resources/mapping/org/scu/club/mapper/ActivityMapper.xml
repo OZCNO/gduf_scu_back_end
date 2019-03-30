@@ -106,6 +106,32 @@
       </trim>
     )
   </insert>
+  <insert id="insertActivityMoneyUse" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO
+    <trim suffixOverrides=",">
+    money_use
+    (
+      activity_id,
+      `use`,
+      `sum`,
+      create_time,
+      update_time,
+    )
+    </trim>
+    VALUES
+    <foreach collection ="list" item="money" index= "index" separator =",">
+     (
+      <trim suffixOverrides=",">
+       #{money.activityId},
+       #{money.use},
+       #{money.sum},
+       #{money.createTime},
+       #{money.updateTime},
+      </trim>
+     )
+
+    </foreach >
+  </insert>
 
   <select id="getById" parameterType="Long" resultType="org.scu.activity.entity.Activity">
     select
@@ -191,5 +217,18 @@
       AND activity_enroll.studentId = #{studentId}
     </if>
     limit #{startRecord}, #{endRecord}
+  </select>
+  <select id="getMoneyUse" resultType="org.scu.activity.entity.Money">
+    SELECT
+    money_use.id,
+    money_use.activity_id activityId,
+    money_use.`use`,
+    money_use.sum,
+    money_use.create_time,
+    money_use.update_time
+    FROM
+    money_use
+    WHERE
+    activity_id = #{activityId}
   </select>
 </mapper>

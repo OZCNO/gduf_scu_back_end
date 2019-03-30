@@ -12,7 +12,7 @@ public class VAnnualRegistration extends AnnualRegistration {
   private String teacherName;
 
   private String teacherMobile;
-  
+
   private String clubType;
 
   public String getClubType() {

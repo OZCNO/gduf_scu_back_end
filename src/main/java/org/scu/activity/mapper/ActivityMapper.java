@@ -1,6 +1,8 @@
 package org.scu.activity.mapper;
 
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
+import org.scu.activity.entity.Money;
 import org.scu.activity.vo.VActivity;
 import org.scu.base.mapper.BaseMapper;
 import org.scu.activity.entity.Activity;
@@ -16,4 +18,8 @@ public interface ActivityMapper extends BaseMapper<QActivity, Activity> {
   List<VActivity> listUnionActivities(QActivity search);
 
   List<VActivity> listAll(QActivity search);
+
+  int insertActivityMoneyUse(List<Money> moneys);
+
+  List<Money> getMoneyUse(@Param("activityId") Integer activityId);
 }
