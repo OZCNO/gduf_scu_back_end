@@ -18,6 +18,7 @@ import org.scu.user.entity.RoleInfo;
 import org.scu.user.entity.User;
 import org.scu.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -53,8 +54,10 @@ public class VipController extends BaseController {
       @RequestParam(required = false, defaultValue = "1") long page,
       @RequestParam(required = false, defaultValue = "10") long pageSize) {
     QStudent search = new QStudent();
-    if (status.equals(1) || status.equals(0)) {
-      search.setStatus(status);
+    if (status != null) {
+      if (status.equals(1) || status.equals(0)) {
+        search.setStatus(status);
+      }
     }
     search.setClubId(clubId);
     search.setRole(role);
