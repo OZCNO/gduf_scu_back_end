@@ -173,7 +173,7 @@
     </if>
     <if test="studentId != null">
       AND activity_enroll.activity_id = activity.id
-      AND activity_enroll.studentId = #{studentId}
+      AND activity_enroll.student_id = #{studentId}
     </if>
     UNION ALL
     select
@@ -194,7 +194,7 @@
     </if>
     <if test="studentId != null">
       AND activity_enroll.activity_id = activity.id
-      AND activity_enroll.studentId = #{studentId}
+      AND activity_enroll.student_id = #{studentId}
     </if>
     limit #{startRecord}, #{endRecord}
   </select>

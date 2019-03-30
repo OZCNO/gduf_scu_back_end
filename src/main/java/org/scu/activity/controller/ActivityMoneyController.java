@@ -5,14 +5,17 @@ import org.scu.activity.entity.Money;
 import org.scu.activity.service.ActivityMoneyService;
 import org.scu.base.controller.BaseController;
 import org.scu.base.domain.BaseResponse;
+import org.scu.base.domain.PaginationResult;
+import org.scu.base.vo.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Created by lynn on 2019/3/30
+ * Created by lamm on 2019/3/30
  */
 @RestController
 public class ActivityMoneyController extends BaseController {
@@ -25,5 +28,14 @@ public class ActivityMoneyController extends BaseController {
       @RequestBody List<Money> moneyList) {
     int result = activityMoneyService.insertActivityMoneyUse(moneyList, activityId);
     return response(result);
+  }
+
+  @GetMapping("/activity/{activityId}/money/usage/")
+  public BaseResponse getMoneyUseByActivityId(@PathVariable("activityId") Integer activityId) {
+    List<Money> moneys = activityMoneyService.getMoneyUse(activityId);
+    PaginationResult paginationResult = new PaginationResult();
+    paginationResult.setTotalCount(moneys.size());
+    paginationResult.setList(moneys);
+    return response(paginationResult);
   }
 }
