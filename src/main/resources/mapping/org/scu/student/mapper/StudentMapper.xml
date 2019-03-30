@@ -132,6 +132,9 @@
     <result property="avatar" column="avatar"/>
     <result property="createTime" column="create_time"/>
     <result property="updateTime" column="update_time"/>
+    <result property="reason" column="reason"/>
+    <result property="introduction" column="introduce"/>
+    <result property="image" column="image"/>
   </resultMap>
 
   <select id="listClubVips" parameterType="org.scu.student.vo.QStudent" resultMap="VipMap">
@@ -140,7 +143,10 @@
       club_student_mapping.department_id,
       department.name department_name,
       major.`name` major_name,
-      institude.`name` institude_name
+      institude.`name` institude_name,
+      club_student_mapping.reason reason,
+      club_student_mapping.introduce introduce,
+      club_student_mapping.image image
     from student
     LEFT JOIN
       club_student_mapping club_student_mapping

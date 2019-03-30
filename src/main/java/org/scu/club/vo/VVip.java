@@ -15,6 +15,45 @@ public class VVip extends Student {
 
   private String institudeName;
 
+  /**
+   * 以下为申请加入时所填原因
+   */
+  private String reason;
+
+  /**
+   * 以下为申请加入时所填自我介绍
+   */
+  private String introduction;
+
+  /**
+   * 以下为申请加入时所传图片
+   */
+  private String image;
+
+  public String getImage() {
+    return image;
+  }
+
+  public void setImage(String image) {
+    this.image = image;
+  }
+
+  public String getReason() {
+    return reason;
+  }
+
+  public void setReason(String reason) {
+    this.reason = reason;
+  }
+
+  public String getIntroduction() {
+    return introduction;
+  }
+
+  public void setIntroduction(String introduction) {
+    this.introduction = introduction;
+  }
+
   public String getInstitudeName() {
     return institudeName;
   }
