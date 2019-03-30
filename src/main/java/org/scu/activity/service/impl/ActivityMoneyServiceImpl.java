@@ -17,7 +17,10 @@ public class ActivityMoneyServiceImpl implements ActivityMoneyService {
   private ActivityMoneyMapper activityMoneyMapper;
 
   @Override
-  public int insertActivityMoneyUse(List<Money> moneyList) {
+  public int insertActivityMoneyUse(List<Money> moneyList, Integer activityId) {
+    for (int i = 0; i < moneyList.size(); i++) {
+      moneyList.get(i).setActivityId(activityId);
+    }
     return activityMoneyMapper.insertActivityMoneyUse(moneyList);
   }
 

@@ -10,7 +10,7 @@ import org.scu.activity.entity.Money;
 
 public interface ActivityMoneyService {
 
-  int insertActivityMoneyUse(List<Money> moneyList);
+  int insertActivityMoneyUse(List<Money> moneyList, Integer activityId);
 
-  List<Money> getMoneyUse(@Param("activityId") Integer activityId);
+  List<Money> getMoneyUse(Integer activityId);
 }

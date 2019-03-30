@@ -10,7 +10,7 @@ public class Money {
 
   private Integer id;
 
-  private Integer activity_id;
+  private Integer activityId;
 
   private String use;
 
@@ -28,12 +28,12 @@ public class Money {
     this.id = id;
   }
 
-  public Integer getActivity_id() {
-    return activity_id;
+  public Integer getActivityId() {
+    return activityId;
   }
 
-  public void setActivity_id(Integer activity_id) {
-    this.activity_id = activity_id;
+  public void setActivityId(Integer activity_id) {
+    this.activityId = activityId;
   }
 
   public String getUse() {
