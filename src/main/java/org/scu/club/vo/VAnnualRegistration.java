@@ -12,6 +12,16 @@ public class VAnnualRegistration extends AnnualRegistration {
   private String teacherName;
 
   private String teacherMobile;
+  
+  private String clubType;
+
+  public String getClubType() {
+    return clubType;
+  }
+
+  public void setClubType(String clubType) {
+    this.clubType = clubType;
+  }
 
   public String getClubName() {
     return clubName;

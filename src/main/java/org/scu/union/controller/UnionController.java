@@ -54,4 +54,6 @@ public class UnionController extends BaseController {
     // illegal , failed
     return response(0, null);
   }
+
+
 }

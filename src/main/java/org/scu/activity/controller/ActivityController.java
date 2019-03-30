@@ -107,7 +107,7 @@ public class ActivityController extends BaseController {
   /**
    * 活动申请
    */
-  @ApiOperation(value = "活动申请", notes = "获取活动信息列表{type}为club或union", httpMethod = "POST")
+  @ApiOperation(value = "活动申请", notes = "申请活动{type}为club或union", httpMethod = "POST")
   @PostMapping("/{type}/activity")
   public BaseResponse applyActivity(@PathVariable("type") String type,
       @RequestBody Activity activity) {
