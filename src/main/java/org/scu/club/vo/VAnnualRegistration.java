@@ -3,7 +3,7 @@ package org.scu.club.vo;
 import org.scu.club.entity.AnnualRegistration;
 
 /**
- * Created by lynn on 2019/2/24
+ * Created by lamm on 2019/2/24
  */
 public class VAnnualRegistration extends AnnualRegistration {
 

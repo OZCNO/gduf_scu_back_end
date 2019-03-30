@@ -1,5 +1,6 @@
 package org.scu.activity.entity;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -37,14 +38,14 @@ public class Activity {
 
   private String address;
 
-  private List<Money> moneyUse;
+  private BigDecimal money;
 
-  public List<Money> getMoneyUse() {
-    return moneyUse;
+  public BigDecimal getMoney() {
+    return money;
   }
 
-  public void setMoneyUse(List<Money> moneyUse) {
-    this.moneyUse = moneyUse;
+  public void setMoney(BigDecimal money) {
+    this.money = money;
   }
 
   public String getAddress() {

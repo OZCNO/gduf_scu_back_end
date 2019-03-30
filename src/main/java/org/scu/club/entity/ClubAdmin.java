@@ -5,7 +5,7 @@ import org.scu.user.entity.RoleInfo;
 import org.scu.user.entity.User;
 
 /**
- * Created by lynn on 2019/1/21
+ * Created by lamm on 2019/1/21
  */
 public class ClubAdmin extends RoleInfo {
 

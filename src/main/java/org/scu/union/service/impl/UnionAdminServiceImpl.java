@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by lynn on 2019/2/23
+ * Created by lamm on 2019/2/23
  */
 @Service
 public class UnionAdminServiceImpl implements UnionAdminService {

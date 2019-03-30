@@ -1,7 +1,7 @@
 package org.scu.user.conf;
 
 /**
- * Created by lynn on 2019/1/21
+ * Created by lamm on 2019/1/21
  */
 public enum UserRole {
 

@@ -1,7 +1,7 @@
 package org.scu.activity.conf;
 
 /**
- * Created by lynn on 2019/1/23
+ * Created by lamm on 2019/1/23
  */
 public enum ActivityType {
 

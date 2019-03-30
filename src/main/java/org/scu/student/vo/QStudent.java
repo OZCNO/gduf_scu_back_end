@@ -4,7 +4,7 @@ import java.util.Date;
 import org.scu.base.vo.Pagination;
 
 /**
- * Created by lynn on 2019/1/22
+ * Created by lamm on 2019/1/22
  */
 public class QStudent extends Pagination {
 

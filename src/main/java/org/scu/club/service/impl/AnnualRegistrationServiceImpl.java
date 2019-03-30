@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by lynn on 2019/1/26
+ * Created by lamm on 2019/1/26
  */
 @Service
 public class AnnualRegistrationServiceImpl implements AnnualRegistrationService {

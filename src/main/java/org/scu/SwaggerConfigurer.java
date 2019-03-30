@@ -60,7 +60,7 @@ public class SwaggerConfigurer {
                                .description("Project For Graduation Design")
                                .termsOfServiceUrl("https://www.baidu.com/")
                                .contact(new Contact("Lamm Gaa Jyu",
-                                                    "https://github.com/lynn-jyu",
+                                                    "https://github.com/lamm-jyu",
                                                     "522013042@qq.com"))
                                .version("0.0.1")
                                .build();

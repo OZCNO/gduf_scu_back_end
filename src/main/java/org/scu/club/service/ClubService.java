@@ -7,7 +7,7 @@ import org.scu.club.vo.QClub;
 import org.scu.club.vo.VClub;
 
 /**
- * Created by lynn on 2019/1/22
+ * Created by lamm on 2019/1/22
  */
 public interface ClubService extends BaseDBService<QClub, Club>{
 

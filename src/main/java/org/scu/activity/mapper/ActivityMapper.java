@@ -9,7 +9,7 @@ import org.scu.activity.entity.Activity;
 import org.scu.activity.vo.QActivity;
 
 /**
- * Created by lynn on 2019/1/23
+ * Created by lamm on 2019/1/23
  */
 public interface ActivityMapper extends BaseMapper<QActivity, Activity> {
 
@@ -18,8 +18,4 @@ public interface ActivityMapper extends BaseMapper<QActivity, Activity> {
   List<VActivity> listUnionActivities(QActivity search);
 
   List<VActivity> listAll(QActivity search);
-
-  int insertActivityMoneyUse(List<Money> moneys);
-
-  List<Money> getMoneyUse(@Param("activityId") Integer activityId);
 }

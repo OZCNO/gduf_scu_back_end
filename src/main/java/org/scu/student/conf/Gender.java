@@ -1,7 +1,7 @@
 package org.scu.student.conf;
 
 /**
- * Created by lynn on 2019/2/23
+ * Created by lamm on 2019/2/23
  */
 public enum  Gender {
 

@@ -7,7 +7,7 @@ import org.scu.club.vo.QAnnualRegistration;
 import org.scu.club.vo.VAnnualRegistration;
 
 /**
- * Created by lynn on 2019/1/26
+ * Created by lamm on 2019/1/26
  */
 public interface AnnualRegistrationMapper extends BaseMapper<QAnnualRegistration, AnnualRegistration> {
 

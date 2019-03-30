@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Created by lynn on 2019/2/14
+ * Created by lamm on 2019/2/14
  */
 @RestController
 public class UnionController extends BaseController {

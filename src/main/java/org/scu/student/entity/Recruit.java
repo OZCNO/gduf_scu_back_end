@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * 由学生填写的招新信息
- * Created by lynn on 2019/3/12
+ * Created by lamm on 2019/3/12
  */
 public class Recruit {
 

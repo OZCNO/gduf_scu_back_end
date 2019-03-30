@@ -16,6 +16,7 @@
       activity.time_end timeEnd,
       activity.enroll_deadline enrollDeadline,
       activity.audit_states auditStates,
+      activity.money,
       activity.create_time createTime,
       activity.update_time updateTime,
     </trim>
@@ -34,6 +35,7 @@
     <result property="timeEnd" column="timeEnd"/>
     <result property="enrollDeadline" column="enrollDeadline"/>
     <result property="auditStates" column="auditStates"/>
+    <result property="money" column="money"/>
     <result property="createTime" column="createTime"/>
     <result property="updateTime" column="updateTime"/>
   </resultMap>
@@ -84,6 +86,7 @@
       time_end,
       enroll_deadline,
       audit_states,
+      money,
       create_time,
       update_time,
     </trim>
@@ -101,36 +104,11 @@
         #{timeEnd},
         #{enrollDeadline},
         #{auditStates},
+        #{moeny},
         #{createTime},
         #{updateTime},
       </trim>
     )
-  </insert>
-  <insert id="insertActivityMoneyUse" useGeneratedKeys="true" keyProperty="id">
-    INSERT INTO
-    <trim suffixOverrides=",">
-    money_use
-    (
-      activity_id,
-      `use`,
-      `sum`,
-      create_time,
-      update_time,
-    )
-    </trim>
-    VALUES
-    <foreach collection ="list" item="money" index= "index" separator =",">
-     (
-      <trim suffixOverrides=",">
-       #{money.activityId},
-       #{money.use},
-       #{money.sum},
-       #{money.createTime},
-       #{money.updateTime},
-      </trim>
-     )
-
-    </foreach >
   </insert>
 
   <select id="getById" parameterType="Long" resultType="org.scu.activity.entity.Activity">
@@ -146,6 +124,7 @@
       activity.time_end timeEnd,
       activity.enroll_deadline enrollDeadline,
       activity.audit_states auditStates,
+      activity.money,
       activity.create_time createTime,
       activity.update_time updateTime
     from activity
@@ -167,6 +146,7 @@
       time_end = #{timeEnd},
       enroll_deadline = #{enrollDeadline},
       audit_states = #{auditStates},
+      money = #{money},
       create_time = #{createTime},
       update_time = #{updateTime}
     </trim>
@@ -218,17 +198,5 @@
     </if>
     limit #{startRecord}, #{endRecord}
   </select>
-  <select id="getMoneyUse" resultType="org.scu.activity.entity.Money">
-    SELECT
-    money_use.id,
-    money_use.activity_id activityId,
-    money_use.`use`,
-    money_use.sum,
-    money_use.create_time,
-    money_use.update_time
-    FROM
-    money_use
-    WHERE
-    activity_id = #{activityId}
-  </select>
+
 </mapper>

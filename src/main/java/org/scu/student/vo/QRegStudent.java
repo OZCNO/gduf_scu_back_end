@@ -4,7 +4,7 @@ import org.scu.base.vo.Pagination;
 import org.scu.student.entity.Student;
 
 /**
- * Created by lynn on 2019/2/4
+ * Created by lamm on 2019/2/4
  */
 public class QRegStudent extends Pagination {
 

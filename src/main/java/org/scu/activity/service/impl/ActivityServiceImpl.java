@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Created by lynn on 2019/1/23
+ * Created by lamm on 2019/1/23
  */
 @Service
 public class ActivityServiceImpl implements ActivityService {
@@ -25,20 +25,13 @@ public class ActivityServiceImpl implements ActivityService {
 
   @Override
   public List<VActivity> listActivities(QActivity search, int type) {
-    List<VActivity> list = new ArrayList<>();
+    List<VActivity> list;
     if (type == ActivityType.UNION_ACTIVITY.getCode()) {
       list =  activityMapper.listUnionActivities(search);
     } else if (type == ActivityType.CLUB_ACTIVITY.getCode()) {
       list = activityMapper.listClubActivities(search);
     } else {
       list = activityMapper.listAll(search);
-    }
-    if (list.size() > 0) {
-      for (VActivity item: list) {
-        Integer activityId = item.getId();
-        List<Money> moneyUseList =  activityMapper.getMoneyUse(activityId);
-        item.setMoneyUse(moneyUseList);
-      }
     }
     return list;
   }
@@ -69,9 +62,6 @@ public class ActivityServiceImpl implements ActivityService {
     }
     item.setAuditStates(ActivityStatus.UNDER_REVIEW.getCode());
     int result = activityMapper.insert(item);
-    if (item.getMoneyUse() != null) {
-      activityMapper.insertActivityMoneyUse(item.getMoneyUse());
-    }
     return result;
   }
 

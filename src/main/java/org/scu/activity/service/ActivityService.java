@@ -7,7 +7,7 @@ import org.scu.activity.entity.Activity;
 import org.scu.activity.vo.QActivity;
 
 /**
- * Created by lynn on 2019/1/23
+ * Created by lamm on 2019/1/23
  */
 public interface ActivityService extends BaseDBService<QActivity, Activity> {
 

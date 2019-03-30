@@ -10,7 +10,7 @@ import org.scu.student.vo.QStudent;
 import org.scu.user.entity.User;
 
 /**
- * Created by lynn on 2019/1/22
+ * Created by lamm on 2019/1/22
  */
 public interface StudentService extends BaseDBService<QStudent, Student> {
 

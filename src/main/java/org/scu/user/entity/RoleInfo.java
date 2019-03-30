@@ -3,7 +3,7 @@ package org.scu.user.entity;
 import java.util.Date;
 
 /**
- * Created by lynn on 2019/2/20
+ * Created by lamm on 2019/2/20
  */
 public class RoleInfo {
 

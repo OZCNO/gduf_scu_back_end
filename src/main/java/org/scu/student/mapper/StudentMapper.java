@@ -9,7 +9,7 @@ import org.scu.student.entity.Student;
 import org.scu.student.vo.QStudent;
 
 /**
- * Created by lynn on 2019/1/22
+ * Created by lamm on 2019/1/22
  */
 public interface StudentMapper extends BaseMapper<QStudent, Student> {
 

@@ -1,7 +1,7 @@
 package org.scu.club.conf;
 
 /**
- * Created by lynn on 2019/1/26
+ * Created by lamm on 2019/1/26
  */
 public enum AnnualRegStatus {
   UNDER_REVIEW(1,"审核中"),

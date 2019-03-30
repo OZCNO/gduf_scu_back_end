@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * 年度注册表
- * Created by lynn on 2019/1/21
+ * Created by lamm on 2019/1/21
  */
 public class AnnualRegistration {
 

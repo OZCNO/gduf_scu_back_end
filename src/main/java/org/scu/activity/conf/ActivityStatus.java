@@ -1,7 +1,7 @@
 package org.scu.activity.conf;
 
 /**
- * Created by lynn on 2019/1/26
+ * Created by lamm on 2019/1/26
  */
 public enum ActivityStatus {
 
