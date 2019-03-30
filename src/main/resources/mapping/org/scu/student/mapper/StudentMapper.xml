@@ -221,8 +221,14 @@
 
   <select id="getByUserId" parameterType="int" resultType="org.scu.student.entity.Student">
     select
-    <include refid="allResult"></include>
+    <include refid="allResult"></include>,
+    institude.name institude,
+    major.name major
     from student
+    left join
+    major on major.id = student.major_id
+    left JOIN
+    institude on institude.id = major.institude_id
     WHERE
     user_id = #{userId}
   </select>
