@@ -59,7 +59,7 @@
     money_use
     SET
     <trim suffixOverrides=",">
-      `read` = #{read}
+      `read` = #{read},
       update_time = #{updateTime},
     </trim>
     WHERE

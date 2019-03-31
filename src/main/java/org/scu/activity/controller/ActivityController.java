@@ -89,7 +89,7 @@ public class ActivityController extends BaseController {
     search.setPageSize(pageSize);
     List<VActivity> list;
     int totalCount;
-    if (type.equalsIgnoreCase(ActivityType.CLUB_ACTIVITY.getTypeName())) {
+    if (type.equalsIgnoreCase(ActivityType.CLUB.getTypeName())) {
       if (loginUser.getRole().equals(UserRole.CLUB_ADMIN.getCode())) {
         search.setUserId(loginUser.getId());
       } else {
@@ -97,10 +97,10 @@ public class ActivityController extends BaseController {
           search.setClubId(clubId);
         }
       }
-      list = activityService.listActivities(search, ActivityType.CLUB_ACTIVITY.getCode());
+      list = activityService.listActivities(search, ActivityType.CLUB.getCode());
       totalCount = activityService.countClubActivities(search);
     } else {
-      list = activityService.listActivities(search, ActivityType.UNION_ACTIVITY.getCode());
+      list = activityService.listActivities(search, ActivityType.UNION.getCode());
       totalCount = activityService.countUnionActivities(search);
     }
     PaginationResult paginationResult = new PaginationResult(list, page, pageSize, totalCount);
@@ -116,10 +116,10 @@ public class ActivityController extends BaseController {
       @RequestBody Activity activity) {
     int result;
     activity.setType(ActivityStatus.UNDER_REVIEW.getCode());
-    if (type.equalsIgnoreCase(ActivityType.CLUB_ACTIVITY.getTypeName())) {
-      result = activityService.insert(activity, ActivityType.CLUB_ACTIVITY.getCode());
+    if (type.equalsIgnoreCase(ActivityType.CLUB.getTypeName())) {
+      result = activityService.insert(activity, ActivityType.CLUB.getCode());
     } else {
-      result = activityService.insert(activity, ActivityType.UNION_ACTIVITY.getCode());
+      result = activityService.insert(activity, ActivityType.UNION.getCode());
     }
     return response(result, activity);
   }

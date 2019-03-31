@@ -122,7 +122,7 @@ public class StudentServiceImpl implements StudentService {
       item.setTime(current);
       item.setCreateTime(current);
       item.setUpdateTime(current);
-      if (activity.getType() == ActivityType.CLUB_ACTIVITY.getCode()) {
+      if (activity.getType() == ActivityType.CLUB.getCode()) {
         item.setClubId(activity.getClubUnionId());
       } else {
         return 0;

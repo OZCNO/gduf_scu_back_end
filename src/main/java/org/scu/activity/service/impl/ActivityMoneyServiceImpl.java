@@ -61,7 +61,7 @@ public class ActivityMoneyServiceImpl implements ActivityMoneyService {
               Collectors.toList()));
       Activity activity = activityMapper.getById(item);
       if (activity != null) {
-        if (activity.getType() == ActivityType.CLUB_ACTIVITY.getCode()) {
+        if (activity.getType() == ActivityType.CLUB.getCode()) {
           Club club = clubMapper.getClub(activity.getClubUnionId());
           map.put("clubName", club.getName());
         } else {

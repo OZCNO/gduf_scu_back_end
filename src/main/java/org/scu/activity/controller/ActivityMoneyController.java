@@ -1,7 +1,6 @@
 package org.scu.activity.controller;
 
 import java.util.List;
-import java.util.Map;
 import org.scu.activity.conf.ActivityType;
 import org.scu.activity.entity.Money;
 import org.scu.activity.service.ActivityMoneyService;
@@ -42,10 +41,10 @@ public class ActivityMoneyController extends BaseController {
     search.setClubOrUnionId(clubOrUnionId);
     search.setStatus(status);
     List moneys;
-    if (type.equals(ActivityType.CLUB_ACTIVITY.getTypeName())) {
-      search.setType(ActivityType.CLUB_ACTIVITY.getCode());
-    } else if (type.equals(ActivityType.UNION_ACTIVITY.getTypeName())) {
-      search.setType(ActivityType.UNION_ACTIVITY.getCode());
+    if (type.equals(ActivityType.CLUB.getTypeName())) {
+      search.setType(ActivityType.CLUB.getCode());
+    } else if (type.equals(ActivityType.UNION.getTypeName())) {
+      search.setType(ActivityType.UNION.getCode());
     } else {
       return FORBIDDEN;
     }

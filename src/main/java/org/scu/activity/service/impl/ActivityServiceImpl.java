@@ -1,11 +1,9 @@
 package org.scu.activity.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.scu.activity.conf.ActivityStatus;
 import org.scu.activity.conf.ActivityType;
 import org.scu.activity.entity.Activity;
-import org.scu.activity.entity.Money;
 import org.scu.activity.mapper.ActivityMapper;
 import org.scu.activity.service.ActivityService;
 import org.scu.activity.vo.QActivity;
@@ -26,9 +24,9 @@ public class ActivityServiceImpl implements ActivityService {
   @Override
   public List<VActivity> listActivities(QActivity search, int type) {
     List<VActivity> list;
-    if (type == ActivityType.UNION_ACTIVITY.getCode()) {
+    if (type == ActivityType.UNION.getCode()) {
       list =  activityMapper.listUnionActivities(search);
-    } else if (type == ActivityType.CLUB_ACTIVITY.getCode()) {
+    } else if (type == ActivityType.CLUB.getCode()) {
       list = activityMapper.listClubActivities(search);
     } else {
       list = activityMapper.listAll(search);
@@ -55,10 +53,10 @@ public class ActivityServiceImpl implements ActivityService {
   @Override
   @Transactional
   public int insert(Activity item, int type) {
-    if (type == ActivityType.UNION_ACTIVITY.getCode()) {
-      item.setType(ActivityType.UNION_ACTIVITY.getCode());
+    if (type == ActivityType.UNION.getCode()) {
+      item.setType(ActivityType.UNION.getCode());
     } else {
-      item.setType(ActivityType.CLUB_ACTIVITY.getCode());
+      item.setType(ActivityType.CLUB.getCode());
     }
     item.setAuditStates(ActivityStatus.UNDER_REVIEW.getCode());
     int result = activityMapper.insert(item);
