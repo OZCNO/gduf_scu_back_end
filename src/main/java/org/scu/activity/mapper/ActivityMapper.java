@@ -19,7 +19,7 @@ public interface ActivityMapper extends BaseMapper<QActivity, Activity> {
 
   List<VActivity> listAll(QActivity search);
 
-  Integer countClubActivities(QActivity search);
+  int countClubActivities(QActivity search);
 
-  Integer countUnionActivities(QActivity search);
+  int countUnionActivities(QActivity search);
 }
