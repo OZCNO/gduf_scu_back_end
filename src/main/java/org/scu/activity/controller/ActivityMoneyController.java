@@ -1,6 +1,7 @@
 package org.scu.activity.controller;
 
 import java.util.List;
+import java.util.Map;
 import org.scu.activity.conf.ActivityType;
 import org.scu.activity.entity.Money;
 import org.scu.activity.service.ActivityMoneyService;
@@ -34,7 +35,7 @@ public class ActivityMoneyController extends BaseController {
   @GetMapping("/{type}/{clubOrUnionId}/money/usage/")
   public BaseResponse getMoneyUseByActivityId(@PathVariable("type") String type,
       @PathVariable("clubOrUnionId") Integer clubOrUnionId) {
-    List<Money> moneys;
+    List moneys;
     if (type.equals(ActivityType.CLUB_ACTIVITY.getTypeName())) {
       moneys = activityMoneyService.list(clubOrUnionId, ActivityType.CLUB_ACTIVITY);
     } else if (type.equals(ActivityType.UNION_ACTIVITY.getTypeName())) {
@@ -42,8 +43,7 @@ public class ActivityMoneyController extends BaseController {
     } else {
       return FORBIDDEN;
     }
-    PaginationResult paginationResult = new PaginationResult(moneys);
-    return response(paginationResult);
+    return response(moneys);
   }
 
   /**

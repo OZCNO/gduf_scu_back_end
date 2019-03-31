@@ -9,12 +9,12 @@
     money_use.`use`,
     money_use.sum,
     money_use.read,
-    money_use.create_time,
-    money_use.update_time
+    money_use.create_time createTime,
+    money_use.update_time updateTime
     FROM
     money_use,activity
     WHERE
-    activity.clubUnionId = #{clubOrUnionId}
+    activity.club_union_id = #{clubOrUnionId}
     AND
     activity.id = activity_id
     AND

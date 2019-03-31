@@ -35,7 +35,7 @@ public class Money {
     return activityId;
   }
 
-  public void setActivityId(Integer activity_id) {
+  public void setActivityId(Integer activityId) {
     this.activityId = activityId;
   }
 

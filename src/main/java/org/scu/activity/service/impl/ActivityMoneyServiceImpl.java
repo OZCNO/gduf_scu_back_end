@@ -1,9 +1,12 @@
 package org.scu.activity.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 import org.scu.activity.conf.ActivityType;
 import org.scu.activity.conf.MoneyUseReadStatus;
 import org.scu.activity.entity.Activity;
@@ -34,8 +37,20 @@ public class ActivityMoneyServiceImpl implements ActivityMoneyService {
   }
 
   @Override
-  public List<Money> list(Integer clubOrUnionId, ActivityType activityType) {
-    return activityMoneyMapper.listMoneyUse(clubOrUnionId, activityType.getCode());
+  public List list(Integer clubOrUnionId, ActivityType activityType) {
+    List<Money> moneyList = activityMoneyMapper.listMoneyUse(clubOrUnionId, activityType.getCode());
+    List<Integer> activityIds = moneyList.stream().map(Money::getActivityId)
+        .collect(Collectors.toList());
+    List<Map<String, Object>> resultList = new ArrayList<>();
+    activityIds.forEach(item -> {
+      Map<String, Object> map = new HashMap<>();
+      map.put("activityId", item);
+      map.put("moneyUse",
+          moneyList.stream().filter(money -> money.getActivityId().equals(item)).collect(
+              Collectors.toList()));
+      resultList.add(map);
+    });
+    return resultList;
   }
 
   @Override
