@@ -15,4 +15,6 @@ public interface ClubMapper extends BaseMapper<QClub, Club> {
   List<VClub> listClubs(QClub search);
 
   int updateVipStatus(@Param("clubId") Integer clubId, @Param("studentId") Integer studentId);
+
+  Club getClub(int id);
 }

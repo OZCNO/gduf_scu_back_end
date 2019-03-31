@@ -11,8 +11,11 @@ import org.scu.activity.conf.ActivityType;
 import org.scu.activity.conf.MoneyUseReadStatus;
 import org.scu.activity.entity.Activity;
 import org.scu.activity.entity.Money;
+import org.scu.activity.mapper.ActivityMapper;
 import org.scu.activity.mapper.ActivityMoneyMapper;
 import org.scu.activity.service.ActivityMoneyService;
+import org.scu.club.entity.Club;
+import org.scu.club.mapper.ClubMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +27,12 @@ public class ActivityMoneyServiceImpl implements ActivityMoneyService {
 
   @Autowired
   private ActivityMoneyMapper activityMoneyMapper;
+
+  @Autowired
+  private ActivityMapper activityMapper;
+
+  @Autowired
+  private ClubMapper clubMapper;
 
   @Override
   public int insertActivityMoneyUse(List<Money> moneyList, Integer activityId) {
@@ -48,6 +57,17 @@ public class ActivityMoneyServiceImpl implements ActivityMoneyService {
       map.put("moneyUse",
           moneyList.stream().filter(money -> money.getActivityId().equals(item)).collect(
               Collectors.toList()));
+      Activity activity = activityMapper.getById(item);
+      if(activity != null) {
+        if (activity.getType() == ActivityType.CLUB_ACTIVITY.getCode()) {
+          Club club = clubMapper.getClub(activity.getClubUnionId());
+          map.put("clubName", club.getName());
+        } else {
+          map.put("clubName", "广东金融学院学生社团联合会");
+        }
+        map.put("theme", activity.getTheme());
+        map.put("money", activity.getMoney());
+      }
       resultList.add(map);
     });
     return resultList;

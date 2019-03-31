@@ -119,7 +119,7 @@
     AND
     club.teacher_id = teacher.id
     AND
-    id = #{id}
+    club.id = #{id}
   </select>
 
   <sql id="allResult">
