@@ -9,7 +9,7 @@
     money_use.activity_id activityId,
     money_use.`use`,
     money_use.sum,
-    .read,
+    money_use.read,
     money_use.create_time createTime,
     money_use.update_time updateTime
     FROM
@@ -19,7 +19,7 @@
     AND
     activity.id = activity_id
     AND
-    activity.type = #{activityType}
+    activity.type = #{type}
     <if test="status != null">
       AND money_use.read = #{status}
     </if>
@@ -71,6 +71,7 @@
     SELECT
     activity.id,
     activity.theme,
+    activity.time_begin timeBegin,
     club.name clubName,
     money_use.id moneyUseId,
     money_use.activity_id moneyUseActivityId,
@@ -100,6 +101,7 @@
     <id column="id" property="id" ></id>
     <result column="theme" property="theme"></result>
     <result column="clubName" property="clubOrUnionName"></result>
+    <result column="timeBegin" property="timeBegin"></result>
     <collection property="moneyUse" ofType="org.scu.activity.entity.Money">
       <result column="moneyUseId" property="id"/>
       <result column="moneyUseActivityId" property="activityId"/>
