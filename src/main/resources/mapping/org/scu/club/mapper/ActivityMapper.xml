@@ -72,7 +72,7 @@
     limit #{startRecord}, #{endRecord}
   </select>
 
-  <select id="countClubActivities" parameterType="org.scu.activity.vo.QActivity" resultType="int">
+  <select id="countClubActivities" parameterType="org.scu.activity.vo.QActivity" resultType="Integer">
     select
       COUNT(1)
     from activity,club
@@ -93,7 +93,7 @@
     limit #{startRecord}, #{endRecord}
   </select>
 
-  <select id="countUnionActivities" parameterType="org.scu.activity.vo.QActivity" resultType="int">
+  <select id="countUnionActivities" parameterType="org.scu.activity.vo.QActivity" resultType="Integer">
     select
     COUNT(1)
     from activity,`union`
@@ -231,7 +231,7 @@
     limit #{startRecord}, #{endRecord}
   </select>
 
-  <select id="count" parameterType="org.scu.activity.vo.QActivity" resultType="int">
+  <select id="count" parameterType="org.scu.activity.vo.QActivity" resultType="Integer">
     SELECT
     count(1)
     FROM
