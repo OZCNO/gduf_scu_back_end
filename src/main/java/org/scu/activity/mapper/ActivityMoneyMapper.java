@@ -11,5 +11,6 @@ public interface ActivityMoneyMapper {
 
   int insertActivityMoneyUse(List<Money> moneys);
 
-  List<Money> getMoneyUse(@Param("activityId") Integer activityId);
+  List<Money> listMoneyUse(@Param("clubOrUnionId") Integer clubOrUnionId,
+      @Param("activityType") Integer activityType);
 }

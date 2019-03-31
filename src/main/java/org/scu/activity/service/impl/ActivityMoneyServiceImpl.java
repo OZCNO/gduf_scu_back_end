@@ -1,6 +1,8 @@
 package org.scu.activity.service.impl;
 
 import java.util.List;
+import org.scu.activity.conf.ActivityType;
+import org.scu.activity.entity.Activity;
 import org.scu.activity.entity.Money;
 import org.scu.activity.mapper.ActivityMoneyMapper;
 import org.scu.activity.service.ActivityMoneyService;
@@ -25,7 +27,7 @@ public class ActivityMoneyServiceImpl implements ActivityMoneyService {
   }
 
   @Override
-  public List<Money> getMoneyUse(Integer activityId) {
-    return activityMoneyMapper.getMoneyUse(activityId);
+  public List<Money> list(Integer clubOrUnionId, ActivityType activityType) {
+    return activityMoneyMapper.listMoneyUse(clubOrUnionId, activityType.getCode());
   }
 }

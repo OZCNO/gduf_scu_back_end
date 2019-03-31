@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.scu.activity.mapper.ActivityMoneyMapper">
-  <select id="getMoneyUse" resultType="org.scu.activity.entity.Money">
+  <select id="listMoneyUse" resultType="org.scu.activity.entity.Money">
     SELECT
     money_use.id,
     money_use.activity_id activityId,
@@ -11,9 +11,14 @@
     money_use.create_time,
     money_use.update_time
     FROM
-    money_use
+    money_use,activity
     WHERE
-    activity_id = #{activityId}
+    activity.clubUnionId = #{clubOrUnionId}
+    AND
+    activity.id = activity_id
+    AND
+    activity.type = #{activityType}
+
   </select>
 
   <insert id="insertActivityMoneyUse" useGeneratedKeys="true" keyProperty="id">

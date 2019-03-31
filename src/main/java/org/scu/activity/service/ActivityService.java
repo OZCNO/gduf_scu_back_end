@@ -14,4 +14,8 @@ public interface ActivityService extends BaseDBService<QActivity, Activity> {
   List<VActivity> listActivities(QActivity search, int type);
 
   int insert(Activity item, int type);
+
+  int countUnionActivities(QActivity search);
+
+  int countClubActivities(QActivity search);
 }

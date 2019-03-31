@@ -43,7 +43,7 @@ public class ActivityServiceImpl implements ActivityService {
 
   @Override
   public long count(QActivity search) {
-    return 0;
+    return activityMapper.count(search);
   }
 
   @Deprecated
@@ -78,5 +78,15 @@ public class ActivityServiceImpl implements ActivityService {
   @Override
   public Activity getById(long id) {
     return activityMapper.getById(id);
+  }
+
+  @Override
+  public int countUnionActivities(QActivity search) {
+    return activityMapper.countUnionActivities(search);
+  }
+
+  @Override
+  public int countClubActivities(QActivity search) {
+    return activityMapper.countClubActivities(search);
   }
 }

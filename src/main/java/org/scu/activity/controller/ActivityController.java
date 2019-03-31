@@ -88,6 +88,7 @@ public class ActivityController extends BaseController {
     search.setPage(page);
     search.setPageSize(pageSize);
     List<VActivity> list;
+    int totalCount;
     if (type.equalsIgnoreCase(ActivityType.CLUB_ACTIVITY.getTypeName())) {
       if (loginUser.getRole().equals(UserRole.CLUB_ADMIN.getCode())) {
         search.setUserId(loginUser.getId());
@@ -97,10 +98,12 @@ public class ActivityController extends BaseController {
         }
       }
       list = activityService.listActivities(search, ActivityType.CLUB_ACTIVITY.getCode());
+      totalCount = activityService.countClubActivities(search);
     } else {
       list = activityService.listActivities(search, ActivityType.UNION_ACTIVITY.getCode());
+      totalCount = activityService.countUnionActivities(search);
     }
-    PaginationResult paginationResult = new PaginationResult(list);
+    PaginationResult paginationResult = new PaginationResult(list, page, pageSize, totalCount);
     return response(paginationResult);
   }
 

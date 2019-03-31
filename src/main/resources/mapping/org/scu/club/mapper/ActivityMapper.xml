@@ -72,6 +72,38 @@
     limit #{startRecord}, #{endRecord}
   </select>
 
+  <select id="countClubActivities" parameterType="org.scu.activity.vo.QActivity" resultType="Integer">
+    select
+      COUNT(1)
+    from activity,club
+    <if test="userId != null">
+      ,club_admin
+    </if>
+    where
+    1=1
+    AND club_union_id = club.id
+    AND `type` = 2
+    <if test="status != null">
+      AND audit_states = #{status}
+    </if>
+    <if test="userId != null">
+      AND user_id = #{userId}
+      AND club.id = club_admin.club_id
+    </if>
+    limit #{startRecord}, #{endRecord}
+  </select>
+
+  <select id="countUnionActivities" parameterType="org.scu.activity.vo.QActivity" resultType="Integer">
+    select
+    COUNT(1)
+    from activity,`union`
+    where
+    1=1
+    AND club_union_id = `union`.id
+    AND `type` = 1
+    limit #{startRecord}, #{endRecord}
+  </select>
+
   <insert id="insert"  useGeneratedKeys="true" keyProperty="id">
     INSERT INTO `activity`
     (
@@ -197,6 +229,13 @@
       AND activity_enroll.student_id = #{studentId}
     </if>
     limit #{startRecord}, #{endRecord}
+  </select>
+
+  <select id="count" parameterType="org.scu.activity.vo.QActivity" resultType="Integer">
+    SELECT
+    count(1)
+    FROM
+    activity
   </select>
 
 </mapper>
