@@ -2,6 +2,7 @@ package org.scu.activity.mapper;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.scu.activity.entity.Fund;
 import org.scu.activity.vo.VFund;
 
 /**
@@ -10,4 +11,6 @@ import org.scu.activity.vo.VFund;
 public interface FundMapper {
 
   List<VFund> list(@Param("type") Integer type);
+
+  int update(Fund item);
 }

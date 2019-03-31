@@ -11,4 +11,6 @@ import org.scu.activity.vo.VFund;
 public interface FundService {
 
   List<VFund> listFunds(ActivityType activityType);
+
+  int update(Fund fund);
 }

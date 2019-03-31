@@ -1,5 +1,8 @@
 package org.scu.activity.entity;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 /**
  * 社团 、 社联经费
  * Created by lynn on 2019/3/31
@@ -12,11 +15,11 @@ public class Fund {
 
   private Integer type;
 
-  private String moneySum;
+  private BigDecimal moneySum;
 
-  private String createTime;
+  private Date createTime;
 
-  private String updateTime;
+  private Date updateTime;
 
   public Integer getId() {
     return id;
@@ -42,27 +45,27 @@ public class Fund {
     this.type = type;
   }
 
-  public String getMoneySum() {
+  public BigDecimal getMoneySum() {
     return moneySum;
   }
 
-  public void setMoneySum(String moneySum) {
+  public void setMoneySum(BigDecimal moneySum) {
     this.moneySum = moneySum;
   }
 
-  public String getCreateTime() {
+  public Date getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(String createTime) {
+  public void setCreateTime(Date createTime) {
     this.createTime = createTime;
   }
 
-  public String getUpdateTime() {
+  public Date getUpdateTime() {
     return updateTime;
   }
 
-  public void setUpdateTime(String updateTime) {
+  public void setUpdateTime(Date updateTime) {
     this.updateTime = updateTime;
   }
 }

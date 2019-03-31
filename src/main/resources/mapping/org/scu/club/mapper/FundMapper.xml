@@ -44,4 +44,16 @@
     and
     money.type = #{type}
   </select>
+
+  <update id="update">
+    UPDATE
+    money
+    SET
+    <trim suffixOverrides=",">
+      money_sum = #{moneySum},
+      update_time = #{updateTime},
+    </trim>
+    WHERE
+    id = #{id}
+  </update>
 </mapper>
