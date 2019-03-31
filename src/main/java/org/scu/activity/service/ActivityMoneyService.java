@@ -14,4 +14,6 @@ public interface ActivityMoneyService {
   int insertActivityMoneyUse(List<Money> moneyList, Integer activityId);
 
   List<Money> list(Integer clubOrUnionId, ActivityType activityType);
+
+  int readMoneyUse(Integer activityId);
 }

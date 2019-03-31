@@ -1,6 +1,7 @@
 package org.scu.activity.mapper;
 
 import java.util.List;
+import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 import org.scu.activity.entity.Money;
 
@@ -13,4 +14,6 @@ public interface ActivityMoneyMapper {
 
   List<Money> listMoneyUse(@Param("clubOrUnionId") Integer clubOrUnionId,
       @Param("activityType") Integer activityType);
+
+  int updateReadStatus(Map data);
 }

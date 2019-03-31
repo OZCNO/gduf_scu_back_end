@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,5 +44,15 @@ public class ActivityMoneyController extends BaseController {
     }
     PaginationResult paginationResult = new PaginationResult(moneys);
     return response(paginationResult);
+  }
+
+  /**
+   * 更改阅读状态
+   * @return
+   */
+  @PutMapping("/activity/{activityId}/money/usage/read")
+  public BaseResponse readMoneyUse(@PathVariable("activityId") Integer activityId) {
+    int result = activityMoneyService.readMoneyUse(activityId);
+    return response(result);
   }
 }

@@ -49,4 +49,16 @@
       )
     </foreach >
   </insert>
+
+  <update id="updateReadStatus" parameterType="HashMap">
+    UPDATE
+    money_use
+    SET
+    <trim suffixOverrides=",">
+      `read` = #{read}
+      update_time = #{updateTime},
+    </trim>
+    WHERE
+    activity_id = #{activityId}
+  </update>
 </mapper>
