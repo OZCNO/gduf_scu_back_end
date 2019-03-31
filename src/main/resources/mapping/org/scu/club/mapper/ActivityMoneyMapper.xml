@@ -8,6 +8,7 @@
     money_use.activity_id activityId,
     money_use.`use`,
     money_use.sum,
+    money_use.read,
     money_use.create_time,
     money_use.update_time
     FROM
@@ -29,6 +30,7 @@
       activity_id,
       `use`,
       `sum`,
+      `read`,
       create_time,
       update_time,
       )
@@ -40,11 +42,11 @@
         #{money.activityId},
         #{money.use},
         #{money.sum},
+        #{money.read},
         #{money.createTime},
         #{money.updateTime},
       </trim>
       )
-
     </foreach >
   </insert>
 </mapper>

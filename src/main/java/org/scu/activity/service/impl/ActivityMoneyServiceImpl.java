@@ -1,5 +1,6 @@
 package org.scu.activity.service.impl;
 
+import java.util.Date;
 import java.util.List;
 import org.scu.activity.conf.ActivityType;
 import org.scu.activity.entity.Activity;
@@ -20,8 +21,11 @@ public class ActivityMoneyServiceImpl implements ActivityMoneyService {
 
   @Override
   public int insertActivityMoneyUse(List<Money> moneyList, Integer activityId) {
+    Date current = new Date();
     for (int i = 0; i < moneyList.size(); i++) {
       moneyList.get(i).setActivityId(activityId);
+      moneyList.get(i).setCreateTime(current);
+      moneyList.get(i).setUpdateTime(current);
     }
     return activityMoneyMapper.insertActivityMoneyUse(moneyList);
   }
