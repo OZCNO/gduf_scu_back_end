@@ -90,6 +90,7 @@ public class VipController extends BaseController {
    */
   @PutMapping("/club/student/{studentId}/status")
   public BaseResponse audit(@PathVariable("studentId") Integer studentId,
+
       HttpServletRequest request) {
     User loginUser = getLoginUser(request);
     RoleInfo roleInfo = userService.getRoleInfo(loginUser);
