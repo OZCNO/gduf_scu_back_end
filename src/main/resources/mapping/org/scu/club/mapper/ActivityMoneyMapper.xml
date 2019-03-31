@@ -2,13 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.scu.activity.mapper.ActivityMoneyMapper">
-  <select id="listMoneyUse" resultType="org.scu.activity.entity.Money">
+  <select id="listMoneyUse" parameterType="org.scu.activity.vo.QActivityMoney"
+    resultType="org.scu.activity.entity.Money">
     SELECT
     money_use.id,
     money_use.activity_id activityId,
     money_use.`use`,
     money_use.sum,
-    money_use.read,
+    .read,
     money_use.create_time createTime,
     money_use.update_time updateTime
     FROM
@@ -19,6 +20,9 @@
     activity.id = activity_id
     AND
     activity.type = #{activityType}
+    <if test="status != null">
+      AND money_use.read = #{status}
+    </if>
 
   </select>
 
@@ -36,7 +40,7 @@
       )
     </trim>
     VALUES
-    <foreach collection ="list" item="money" index= "index" separator =",">
+    <foreach collection="list" item="money" index="index" separator=",">
       (
       <trim suffixOverrides=",">
         #{money.activityId},
@@ -47,7 +51,7 @@
         #{money.updateTime},
       </trim>
       )
-    </foreach >
+    </foreach>
   </insert>
 
   <update id="updateReadStatus" parameterType="HashMap">
@@ -61,4 +65,47 @@
     WHERE
     activity_id = #{activityId}
   </update>
+
+  <select id="listClubMoneyUsage" resultMap="activityMoney"
+    parameterType="org.scu.activity.vo.QActivityMoney">
+    SELECT
+    activity.id,
+    activity.theme,
+    club.name clubName,
+    money_use.id moneyUseId,
+    money_use.activity_id moneyUseActivityId,
+    money_use.`use`,
+    money_use.sum,
+    money_use.`read`
+    FROM
+    activity
+    LEFT JOIN
+    money_use
+    ON
+    activity.id = money_use.activity_id
+    LEFT JOIN
+    club
+    ON
+    club.id = activity.club_union_id
+    WHERE
+    activity.money > 0
+    AND
+    activity.type = 2
+    <if test="status != null">
+      AND money_use.read = #{status}
+    </if>
+  </select>
+
+  <resultMap id="activityMoney" type="org.scu.activity.vo.VActivity">
+    <id column="id" property="id" ></id>
+    <result column="theme" property="theme"></result>
+    <result column="clubName" property="clubOrUnionName"></result>
+    <collection property="moneyUse" ofType="org.scu.activity.entity.Money">
+      <result column="moneyUseId" property="id"/>
+      <result column="moneyUseActivityId" property="activityId"/>
+      <result column="use" property="use"/>
+      <result column="sum" property="sum"/>
+      <result column="read" property="read"/>
+    </collection>
+  </resultMap>
 </mapper>

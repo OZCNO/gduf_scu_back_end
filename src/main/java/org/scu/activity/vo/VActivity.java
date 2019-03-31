@@ -18,4 +18,14 @@ public class VActivity extends Activity {
   public void setClubOrUnionName(String clubOrUnionName) {
     this.clubOrUnionName = clubOrUnionName;
   }
+
+  private List<Money> moneyUse;
+
+  public List<Money> getMoneyUse() {
+    return moneyUse;
+  }
+
+  public void setMoneyUse(List<Money> moneyUse) {
+    this.moneyUse = moneyUse;
+  }
 }

@@ -14,6 +14,7 @@ import org.scu.activity.entity.Money;
 import org.scu.activity.mapper.ActivityMapper;
 import org.scu.activity.mapper.ActivityMoneyMapper;
 import org.scu.activity.service.ActivityMoneyService;
+import org.scu.activity.vo.QActivityMoney;
 import org.scu.club.entity.Club;
 import org.scu.club.mapper.ClubMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,8 +47,9 @@ public class ActivityMoneyServiceImpl implements ActivityMoneyService {
   }
 
   @Override
-  public List list(Integer clubOrUnionId, ActivityType activityType) {
-    List<Money> moneyList = activityMoneyMapper.listMoneyUse(clubOrUnionId, activityType.getCode());
+  public List list(QActivityMoney search) {
+
+    List<Money> moneyList = activityMoneyMapper.listMoneyUse(search);
     Set<Integer> activityIds = moneyList.stream().map(Money::getActivityId)
         .collect(Collectors.toSet());
     List<Map<String, Object>> resultList = new ArrayList<>();
@@ -81,5 +83,10 @@ public class ActivityMoneyServiceImpl implements ActivityMoneyService {
     map.put("updateTime", new Date());
     map.put("activityId", activityId);
     return activityMoneyMapper.updateReadStatus(map);
+  }
+
+  @Override
+  public List<Activity> listClubMoneyUsage(QActivityMoney search) {
+    return activityMoneyMapper.listClubMoneyUsage(search);
   }
 }
