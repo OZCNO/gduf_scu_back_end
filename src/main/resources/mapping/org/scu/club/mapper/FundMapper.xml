@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.scu.activity.mapper.FundMapper">
+
+  <sql id="allResult">
+    <trim suffixOverrides=",">
+      money.id,
+      money.club_union_id clubUnionId,
+      money.type,
+      money.money_sum moneySum,
+      money.create_time createTime,
+      money.update_time updateTime
+    </trim>
+  </sql>
+
+  <select id="list" resultType="org.scu.activity.vo.VFund" parameterType="Integer">
+    SELECT
+    <trim suffixOverrides=",">
+      <include refid="allResult"></include>,
+      <if test="type == 1">
+        `union`
+      </if>
+      <if test="type == 2">
+        club
+      </if>
+      .name name,
+    </trim>
+    FROM
+    money
+    <if test="type == 1">
+      , `union`
+    </if>
+    <if test="type == 2">
+      , club
+    </if>
+    where
+    <if test="type == 1">
+      money.club_union_id = `union`.id
+    </if>
+    <if test="type == 2">
+      money.club_union_id = club.id
+    </if>
+    and
+    money.type = #{type}
+  </select>
+</mapper>
