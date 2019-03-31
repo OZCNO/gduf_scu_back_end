@@ -58,7 +58,7 @@ public class ActivityMoneyServiceImpl implements ActivityMoneyService {
           moneyList.stream().filter(money -> money.getActivityId().equals(item)).collect(
               Collectors.toList()));
       Activity activity = activityMapper.getById(item);
-      if(activity != null) {
+      if (activity != null) {
         if (activity.getType() == ActivityType.CLUB_ACTIVITY.getCode()) {
           Club club = clubMapper.getClub(activity.getClubUnionId());
           map.put("clubName", club.getName());
@@ -67,6 +67,7 @@ public class ActivityMoneyServiceImpl implements ActivityMoneyService {
         }
         map.put("theme", activity.getTheme());
         map.put("money", activity.getMoney());
+        map.put("timeBegin", activity.getTimeBegin());
       }
       resultList.add(map);
     });
