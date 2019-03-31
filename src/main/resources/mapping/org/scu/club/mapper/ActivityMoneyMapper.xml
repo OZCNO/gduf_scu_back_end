@@ -28,17 +28,17 @@
 
   <insert id="insertActivityMoneyUse" useGeneratedKeys="true" keyProperty="id">
     INSERT INTO
+    money_use
+    (
     <trim suffixOverrides=",">
-      money_use
-      (
       activity_id,
       `use`,
       `sum`,
       `read`,
       create_time,
       update_time,
-      )
     </trim>
+    )
     VALUES
     <foreach collection="list" item="money" index="index" separator=",">
       (
