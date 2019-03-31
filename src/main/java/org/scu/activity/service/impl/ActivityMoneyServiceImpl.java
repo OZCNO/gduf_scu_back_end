@@ -39,8 +39,8 @@ public class ActivityMoneyServiceImpl implements ActivityMoneyService {
   @Override
   public List list(Integer clubOrUnionId, ActivityType activityType) {
     List<Money> moneyList = activityMoneyMapper.listMoneyUse(clubOrUnionId, activityType.getCode());
-    List<Integer> activityIds = moneyList.stream().map(Money::getActivityId)
-        .collect(Collectors.toList());
+    Set<Integer> activityIds = moneyList.stream().map(Money::getActivityId)
+        .collect(Collectors.toSet());
     List<Map<String, Object>> resultList = new ArrayList<>();
     activityIds.forEach(item -> {
       Map<String, Object> map = new HashMap<>();
