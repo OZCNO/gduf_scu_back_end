@@ -90,7 +90,6 @@
       AND user_id = #{userId}
       AND club.id = club_admin.club_id
     </if>
-    limit #{startRecord}, #{endRecord}
   </select>
 
   <select id="countUnionActivities" parameterType="org.scu.activity.vo.QActivity" resultType="int">
@@ -101,7 +100,6 @@
     1=1
     AND club_union_id = `union`.id
     AND `type` = 1
-    limit #{startRecord}, #{endRecord}
   </select>
 
   <insert id="insert"  useGeneratedKeys="true" keyProperty="id">
