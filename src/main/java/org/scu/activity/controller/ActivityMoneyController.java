@@ -63,7 +63,7 @@ public class ActivityMoneyController extends BaseController {
     return response(result);
   }
 
-  @GetMapping("/money/usage/")
+  @GetMapping("/club/money/usage/")
   public BaseResponse listAll(@RequestParam(required = false) Integer status) {
     QActivityMoney search = new QActivityMoney();
     search.setStatus(status);
