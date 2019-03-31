@@ -72,6 +72,7 @@
     activity.id,
     activity.theme,
     activity.time_begin timeBegin,
+    activity.money money,
     club.name clubName,
     money_use.id moneyUseId,
     money_use.activity_id moneyUseActivityId,
@@ -101,6 +102,7 @@
     <id column="id" property="id" ></id>
     <result column="theme" property="theme"></result>
     <result column="clubName" property="clubOrUnionName"></result>
+    <result column="money" property="money"></result>
     <result column="timeBegin" property="timeBegin"></result>
     <collection property="moneyUse" ofType="org.scu.activity.entity.Money">
       <result column="moneyUseId" property="id"/>
