@@ -48,7 +48,6 @@ public class ActivityMoneyServiceImpl implements ActivityMoneyService {
 
   @Override
   public List list(QActivityMoney search) {
-
     List<Money> moneyList = activityMoneyMapper.listMoneyUse(search);
     Set<Integer> activityIds = moneyList.stream().map(Money::getActivityId)
         .collect(Collectors.toSet());

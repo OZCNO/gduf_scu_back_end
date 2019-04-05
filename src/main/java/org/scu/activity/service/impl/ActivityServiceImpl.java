@@ -8,6 +8,8 @@ import org.scu.activity.mapper.ActivityMapper;
 import org.scu.activity.service.ActivityService;
 import org.scu.activity.vo.QActivity;
 import org.scu.activity.vo.VActivity;
+import org.scu.user.conf.UserRole;
+import org.scu.user.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -86,5 +88,26 @@ public class ActivityServiceImpl implements ActivityService {
   @Override
   public int countClubActivities(QActivity search) {
     return activityMapper.countClubActivities(search);
+  }
+
+  @Override
+  public List<Activity> listUncommitMoneyUsageActivities(QActivity search, int role) {
+    if (role == UserRole.CLUB_ADMIN.getCode()) {
+      return activityMapper.listClubUncommitedUsageActivities(search);
+    } else if (role == UserRole.UNION_ADMIN.getCode()) {
+      return activityMapper.listUnionUncommitedUsageActivities(search);
+    } else {
+      return null;
+    }
+  }
+
+  @Override
+  public int countClubUncommitedUsageActivities(QActivity search) {
+    return activityMapper.countClubUncommitedUsageActivities(search);
+  }
+
+  @Override
+  public int countUnionUncommitedUsageActivities(QActivity search) {
+    return activityMapper.countUnionUncommitedUsageActivities(search);
   }
 }

@@ -166,4 +166,34 @@ public class ActivityController extends BaseController {
     int result = activityService.update(activity);
     return response(result, activity);
   }
+
+  /**
+   * 社团或社联获取自己未提交的经费表活动
+   */
+  @GetMapping("/uncommitted/money/usage/activity")
+  public BaseResponse listMoneyUsage(HttpServletRequest request,
+      @RequestParam(required = false, defaultValue = "1") long page,
+      @RequestParam(required = false, defaultValue = "10") long pageSize) {
+    User loginUser = getLoginUser(request);
+    int role = loginUser.getRole().intValue();
+    System.out.println("============"+role);
+    QActivity search = new QActivity();
+    if (role == UserRole.CLUB_ADMIN.getCode() || role == UserRole.UNION_ADMIN.getCode()) {
+      search.setUserId(loginUser.getId());
+    } else {
+      return FORBIDDEN;
+    }
+    search.setPage(page);
+    search.setPageSize(pageSize);
+
+    List<Activity> list = activityService.listUncommitMoneyUsageActivities(search, role);
+    int totalCount;
+    if (role == UserRole.CLUB_ADMIN.getCode()) {
+      totalCount = activityService.countClubUncommitedUsageActivities(search);
+    } else {
+      totalCount = activityService.countUnionUncommitedUsageActivities(search);
+    }
+    PaginationResult paginationResult = new PaginationResult(list, page, pageSize, totalCount);
+    return response(paginationResult);
+  }
 }

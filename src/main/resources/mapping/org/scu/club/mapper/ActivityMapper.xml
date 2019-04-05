@@ -17,6 +17,7 @@
       activity.enroll_deadline enrollDeadline,
       activity.audit_states auditStates,
       activity.money,
+      activity.address,
       activity.create_time createTime,
       activity.update_time updateTime,
     </trim>
@@ -36,11 +37,13 @@
     <result property="enrollDeadline" column="enrollDeadline"/>
     <result property="auditStates" column="auditStates"/>
     <result property="money" column="money"/>
+    <result property="address" column="address"/>
     <result property="createTime" column="createTime"/>
     <result property="updateTime" column="updateTime"/>
   </resultMap>
 
-  <select id="listClubActivities" parameterType="org.scu.activity.vo.QActivity" resultMap="activityMap">
+  <select id="listClubActivities" parameterType="org.scu.activity.vo.QActivity"
+    resultMap="activityMap">
     select
     <include refid="allResult"></include>
     from activity,club
@@ -49,8 +52,8 @@
     </if>
     where
     1=1
-      AND club_union_id = club.id
-      AND `type` = 2
+    AND club_union_id = club.id
+    AND `type` = 2
     <if test="status != null">
       AND audit_states = #{status}
     </if>
@@ -61,7 +64,8 @@
     limit #{startRecord}, #{endRecord}
   </select>
 
-  <select id="listUnionActivities" parameterType="org.scu.activity.vo.QActivity" resultMap="activityMap">
+  <select id="listUnionActivities" parameterType="org.scu.activity.vo.QActivity"
+    resultMap="activityMap">
     select
     <include refid="allResult"></include>
     from activity,`union`
@@ -74,7 +78,7 @@
 
   <select id="countClubActivities" parameterType="org.scu.activity.vo.QActivity" resultType="int">
     select
-      COUNT(1)
+    COUNT(1)
     from activity,club
     <if test="userId != null">
       ,club_admin
@@ -102,7 +106,7 @@
     AND `type` = 1
   </select>
 
-  <insert id="insert"  useGeneratedKeys="true" keyProperty="id">
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id">
     INSERT INTO `activity`
     (
     <trim suffixOverrides=",">
@@ -117,27 +121,29 @@
       enroll_deadline,
       audit_states,
       money,
+      address,
       create_time,
       update_time,
     </trim>
     )
     VALUES
     (
-      <trim suffixOverrides=",">
-        #{clubUnionId},
-        #{type},
-        #{theme},
-        #{introduction},
-        #{content},
-        #{memberActivity},
-        #{timeBegin},
-        #{timeEnd},
-        #{enrollDeadline},
-        #{auditStates},
-        #{money},
-        #{createTime},
-        #{updateTime},
-      </trim>
+    <trim suffixOverrides=",">
+      #{clubUnionId},
+      #{type},
+      #{theme},
+      #{introduction},
+      #{content},
+      #{memberActivity},
+      #{timeBegin},
+      #{timeEnd},
+      #{enrollDeadline},
+      #{auditStates},
+      #{money},
+      #{address}
+      #{createTime},
+      #{updateTime},
+    </trim>
     )
   </insert>
 
@@ -155,6 +161,7 @@
       activity.enroll_deadline enrollDeadline,
       activity.audit_states auditStates,
       activity.money,
+      activity.address,
       activity.create_time createTime,
       activity.update_time updateTime
     from activity
@@ -177,6 +184,7 @@
       enroll_deadline = #{enrollDeadline},
       audit_states = #{auditStates},
       money = #{money},
+      address = #{address},
       create_time = #{createTime},
       update_time = #{updateTime}
     </trim>
@@ -236,4 +244,113 @@
     activity
   </select>
 
+  <select id="listClubUncommitedUsageActivities"
+    parameterType="org.scu.activity.vo.QActivity"
+    resultType="org.scu.activity.entity.Activity">
+    select
+    activity.id,
+	  activity.club_union_id clubUnionId,
+    activity.type,
+    activity.theme,
+    activity.introduction,
+    activity.content,
+    activity.member_activity memberActivity,
+    activity.time_begin timeBegin,
+    activity.time_end timeEnd,
+    activity.enroll_deadline enrollDeadline,
+    activity.audit_states auditStates,
+    activity.money,
+    activity.address,
+    activity.create_time createTime,
+    activity.update_time updateTime
+    from activity activity
+    LEFT JOIN
+    club_admin club_admin on club_admin.club_id = activity.club_union_id
+    LEFT JOIN
+    `user` `user` on `user`.id = club_admin.user_id
+    where
+    `user`.id = #{userId}
+    AND
+    activity.money > 0 AND (
+
+      select count(1)
+      from money_use money_use
+      WHERE
+      money_use.activity_id = activity.id
+    ) = 0
+    limit #{startRecord}, #{endRecord}
+  </select>
+
+  <select id="listUnionUncommitedUsageActivities"
+    parameterType="org.scu.activity.vo.QActivity"
+    resultType="org.scu.activity.entity.Activity">
+    select
+    activity.id,
+	  activity.club_union_id clubUnionId,
+    activity.type,
+    activity.theme,
+    activity.introduction,
+    activity.content,
+    activity.member_activity memberActivity,
+    activity.time_begin timeBegin,
+    activity.time_end timeEnd,
+    activity.enroll_deadline enrollDeadline,
+    activity.audit_states auditStates,
+    activity.money,
+    activity.address,
+    activity.create_time createTime,
+    activity.update_time updateTime
+    from activity activity
+    where
+    activity.type = 1
+    AND
+    activity.money > 0 AND (
+
+    select count(1)
+    from money_use money_use
+    WHERE
+    money_use.activity_id = activity.id
+    ) = 0
+    limit #{startRecord}, #{endRecord}
+  </select>
+
+  <select id="countClubUncommitedUsageActivities"
+    parameterType="org.scu.activity.vo.QActivity"
+    resultType="int">
+    select
+    COUNT(1)
+    from activity activity
+    LEFT JOIN
+    club_admin club_admin on club_admin.club_id = activity.club_union_id
+    LEFT JOIN
+    `user` `user` on `user`.id = club_admin.user_id
+    where
+    `user`.id = #{userId}
+    AND
+    activity.money > 0 AND (
+
+    select count(1)
+    from money_use money_use
+    WHERE
+    money_use.activity_id = activity.id
+    ) = 0
+  </select>
+
+  <select id="countUnionUncommitedUsageActivities"
+    parameterType="org.scu.activity.vo.QActivity"
+    resultType="int">
+    select
+    COUNT(1)
+    from activity activity
+    where
+    activity.type = 1
+    AND
+    activity.money > 0 AND (
+
+    select count(1)
+    from money_use money_use
+    WHERE
+    money_use.activity_id = activity.id
+    ) = 0
+  </select>
 </mapper>

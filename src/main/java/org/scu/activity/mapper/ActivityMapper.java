@@ -22,4 +22,12 @@ public interface ActivityMapper extends BaseMapper<QActivity, Activity> {
   int countClubActivities(QActivity search);
 
   int countUnionActivities(QActivity search);
+
+  List<Activity> listClubUncommitedUsageActivities(QActivity search);
+
+  List<Activity> listUnionUncommitedUsageActivities(QActivity search);
+
+  int countClubUncommitedUsageActivities(QActivity search);
+
+  int countUnionUncommitedUsageActivities(QActivity search);
 }

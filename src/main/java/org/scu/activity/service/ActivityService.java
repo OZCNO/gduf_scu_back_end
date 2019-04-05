@@ -18,4 +18,10 @@ public interface ActivityService extends BaseDBService<QActivity, Activity> {
   int countUnionActivities(QActivity search);
 
   int countClubActivities(QActivity search);
+
+  List<Activity> listUncommitMoneyUsageActivities(QActivity search, int role);
+
+  int countClubUncommitedUsageActivities(QActivity search);
+
+  int countUnionUncommitedUsageActivities(QActivity search);
 }

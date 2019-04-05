@@ -1,6 +1,7 @@
 package org.scu.activity.controller;
 
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import org.scu.activity.conf.ActivityType;
 import org.scu.activity.entity.Money;
 import org.scu.activity.service.ActivityMoneyService;
@@ -8,6 +9,8 @@ import org.scu.activity.vo.QActivityMoney;
 import org.scu.base.controller.BaseController;
 import org.scu.base.domain.BaseResponse;
 import org.scu.base.domain.PaginationResult;
+import org.scu.user.conf.UserRole;
+import org.scu.user.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -62,6 +65,7 @@ public class ActivityMoneyController extends BaseController {
     return response(result);
   }
 
+  // todo /{type}/money/usage
   @GetMapping("/club/money/usage")
   public BaseResponse listAll(@RequestParam(required = false) Integer status) {
     QActivityMoney search = new QActivityMoney();
