@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.scu.statistics.mapper.StatisticsMapper">
+
+
+  <select id="listClubTermActivityStatistics"
+    parameterType="HashMap"
+    resultType="org.scu.statistics.entity.TermActivityStatistics">
+
+    SELECT
+      club.id id,
+      club.`name` `name`,
+      count(activity.member_activity = 1 or null) memberTimes,
+      count(activity.id) times,
+      count(activity.member_activity != 1 or null) unmemberTimes
+    FROM
+      club club
+    LEFT JOIN
+      activity activity
+    ON
+      club.id = activity.club_union_id
+    AND activity.type = 2
+    AND activity.time_begin BETWEEN  #{beginDate} AND #{endDate}
+    GROUP BY
+      club.id
+
+  </select>
+  <select id="listUnionTermActivityStatistics"
+    parameterType="HashMap"
+    resultType="org.scu.statistics.entity.TermActivityStatistics">
+    SELECT
+      `union`.id id,
+      `union`.`name` `name`,
+      count(activity.member_activity = 1 or null) memberTimes,
+      count(activity.id) times,
+      count(activity.member_activity != 1 or null) unmemberTimes
+    FROM
+      `union` `union`
+    LEFT JOIN
+      activity activity
+    ON
+      `union`.id = activity.club_union_id
+    AND activity.type = 1
+    AND activity.time_begin BETWEEN  #{beginDate} AND #{endDate}
+    GROUP BY
+      `union`.id
+  </select>
+</mapper>

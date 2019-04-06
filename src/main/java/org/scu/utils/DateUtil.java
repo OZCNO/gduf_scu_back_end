@@ -1,7 +1,11 @@
 package org.scu.utils;
 
+import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Lamm on 2018/12/19.
@@ -41,5 +45,15 @@ public class DateUtil {
 
   public static Date addDateByMillisecond(Date date, int millisecond) {
     return addDate(date, Calendar.MILLISECOND, millisecond);
+  }
+
+  public static boolean belongCalendar(LocalDate nowTime, LocalDate beginTime, LocalDate endTime) {
+    if (nowTime.isAfter(beginTime) && endTime.isAfter(nowTime)) {
+      return true;
+    } else if (nowTime.compareTo(beginTime) == 0 || nowTime.compareTo(endTime) == 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
