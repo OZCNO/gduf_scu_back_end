@@ -122,6 +122,7 @@ public class StudentServiceImpl implements StudentService {
       item.setTime(current);
       item.setCreateTime(current);
       item.setUpdateTime(current);
+      item.setRole(0);// 默认会员 没空写enum了 偷偷懒
       if (activity.getType() == ActivityType.CLUB.getCode()) {
         item.setClubId(activity.getClubUnionId());
       } else {

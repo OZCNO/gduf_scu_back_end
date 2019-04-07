@@ -30,6 +30,16 @@ public class Recruit {
 
   private Date updateTime;
 
+  private Integer role;
+
+  public Integer getRole() {
+    return role;
+  }
+
+  public void setRole(Integer role) {
+    this.role = role;
+  }
+
   public Integer getId() {
     return id;
   }
