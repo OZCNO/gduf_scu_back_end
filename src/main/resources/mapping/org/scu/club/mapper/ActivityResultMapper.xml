@@ -27,8 +27,8 @@
     FROM
       activity
     WHERE
-      activity.result_image IS NOT NULL,
-    AND activity.result_content IS NOT NULL,
+      activity.result_image IS NOT NULL
+    AND activity.result_content IS NOT NULL
     AND activity.result_title IS NOT NULL
     limit #{startRecord}, #{endRecord}
   </select>
@@ -40,8 +40,8 @@
     FROM
       activity
     WHERE
-      activity.result_image IS NOT NULL,
-    AND activity.result_content IS NOT NULL,
+      activity.result_image IS NOT NULL
+    AND activity.result_content IS NOT NULL
     AND activity.result_title IS NOT NULL
   </select>
 </mapper>
