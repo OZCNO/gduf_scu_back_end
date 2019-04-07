@@ -21,9 +21,9 @@
     resultType="org.scu.activity.entity.ActivityResult">
     SELECT
       activity.id
-      activity.result_image,
-      activity.result_content,
-      activity.result_title
+      activity.result_image image,
+      activity.result_content content,
+      activity.result_title title
     FROM
       activity
     limit #{startRecord}, #{endRecord}
