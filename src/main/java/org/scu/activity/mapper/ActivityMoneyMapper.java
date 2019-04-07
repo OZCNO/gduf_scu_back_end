@@ -19,4 +19,6 @@ public interface ActivityMoneyMapper {
   int updateReadStatus(Map data);
 
   List<Activity> listClubMoneyUsage(QActivityMoney search);
+
+  List<Activity> listUnionMoneyUsage(QActivityMoney search);
 }

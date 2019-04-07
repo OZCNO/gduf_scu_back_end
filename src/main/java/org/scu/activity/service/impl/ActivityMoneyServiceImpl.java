@@ -88,4 +88,9 @@ public class ActivityMoneyServiceImpl implements ActivityMoneyService {
   public List<Activity> listClubMoneyUsage(QActivityMoney search) {
     return activityMoneyMapper.listClubMoneyUsage(search);
   }
+
+  @Override
+  public List<Activity> listUnionMoneyUsage(QActivityMoney search) {
+    return activityMoneyMapper.listUnionMoneyUsage(search);
+  }
 }

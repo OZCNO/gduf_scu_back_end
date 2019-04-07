@@ -21,4 +21,6 @@ public interface ActivityMoneyService {
   int readMoneyUse(Integer activityId);
 
   List<Activity> listClubMoneyUsage(QActivityMoney search);
+
+  List<Activity> listUnionMoneyUsage(QActivityMoney search);
 }

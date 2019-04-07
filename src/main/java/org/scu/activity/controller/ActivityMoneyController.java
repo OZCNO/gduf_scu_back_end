@@ -65,12 +65,19 @@ public class ActivityMoneyController extends BaseController {
     return response(result);
   }
 
-  // todo /{type}/money/usage
-  @GetMapping("/club/money/usage")
-  public BaseResponse listAll(@RequestParam(required = false) Integer status) {
+  @GetMapping("/{type}/money/usage")
+  public BaseResponse listAll(@PathVariable("type") String type,
+      @RequestParam(required = false) Integer status) {
     QActivityMoney search = new QActivityMoney();
     search.setStatus(status);
     List moneys;
+    if (type.equalsIgnoreCase("club")) {
+      moneys = activityMoneyService.listClubMoneyUsage(search);
+    } else if (type.equalsIgnoreCase("union")) {
+      moneys = activityMoneyService.listUnionMoneyUsage(search);
+    } else {
+      return FORBIDDEN;
+    }
     moneys = activityMoneyService.listClubMoneyUsage(search);
     PaginationResult paginationResult = new PaginationResult(moneys);
     return response(paginationResult);

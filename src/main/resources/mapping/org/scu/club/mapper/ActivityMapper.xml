@@ -73,6 +73,9 @@
     1=1
     AND club_union_id = `union`.id
     AND `type` = 1
+    <if test="status != null">
+      AND audit_states = #{status}
+    </if>
     limit #{startRecord}, #{endRecord}
   </select>
 
