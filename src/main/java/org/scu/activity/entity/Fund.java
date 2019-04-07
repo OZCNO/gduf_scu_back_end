@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  * 社团 、 社联经费
- * Created by lynn on 2019/3/31
+ * Created by lamm on 2019/3/31
  */
 public class Fund {
 

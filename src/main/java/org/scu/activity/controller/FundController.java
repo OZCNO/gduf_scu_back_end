@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Created by lynn on 2019/3/31
+ * Created by lamm on 2019/3/31
  */
 @RestController
 public class FundController extends BaseController {

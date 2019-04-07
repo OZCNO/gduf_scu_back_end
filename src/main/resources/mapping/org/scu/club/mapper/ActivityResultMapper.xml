@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.scu.activity.mapper.ActivityResultMapper">
+  <update id="update">
+    UPDATE
+    activity
+    SET
+    <trim suffixOverrides=",">
+      result_image = #{image},
+      result_content = #{content},
+      result_title = #{title},
+    </trim>
+    WHERE
+    <trim suffixOverrides="and">
+      `id` = #{id} and
+    </trim>
+  </update>
+
+  <select id="list" parameterType="org.scu.activity.vo.QActivityResult"
+    resultType="org.scu.activity.entity.ActivityResult">
+    SELECT
+      activity.id
+      activity.result_image,
+      activity.result_content,
+      activity.result_title
+    FROM
+      activity
+    limit #{startRecord}, #{endRecord}
+  </select>
+</mapper>

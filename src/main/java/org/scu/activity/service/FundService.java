@@ -6,7 +6,7 @@ import org.scu.activity.entity.Fund;
 import org.scu.activity.vo.VFund;
 
 /**
- * Created by lynn on 2019/3/31
+ * Created by lamm on 2019/3/31
  */
 public interface FundService {
 

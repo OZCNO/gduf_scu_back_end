@@ -3,7 +3,7 @@ package org.scu.activity.vo;
 import org.scu.activity.conf.ActivityType;
 
 /**
- * Created by lynn on 2019/3/31
+ * Created by lamm on 2019/3/31
  */
 public class QActivityMoney {
 

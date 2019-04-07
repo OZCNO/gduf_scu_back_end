@@ -1,7 +1,7 @@
 package org.scu.activity.conf;
 
 /**
- * Created by lynn on 2019/3/31
+ * Created by lamm on 2019/3/31
  */
 public enum MoneyUseReadStatus {
 

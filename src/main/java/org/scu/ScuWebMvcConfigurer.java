@@ -9,6 +9,7 @@ import org.scu.base.handler.UrlInterceptor;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -26,6 +27,12 @@ public class ScuWebMvcConfigurer extends WebMvcConfigurationSupport {
 
   @Autowired
   private AuthInterceptor authInterceptor;
+
+  @Value("${file.staticAccessPath}")
+  private String staticAccessPath;
+
+  @Value("${file.uploadFolder}")
+  private String uploadFolder;
 
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
@@ -67,5 +74,6 @@ public class ScuWebMvcConfigurer extends WebMvcConfigurationSupport {
             .addResourceLocations("classpath:/META-INF/resources/");
     registry.addResourceHandler("/webjars/**")
             .addResourceLocations("classpath:/META-INF/resources/webjars/");
+    registry.addResourceHandler(staticAccessPath).addResourceLocations("file:" + uploadFolder);
   }
 }

@@ -35,3 +35,10 @@ mybatis:
 
 #logging:
 #  config: classpath:logback.xml
+
+#静态资源对外暴露的访问路径
+file:
+  staticAccessPath: /api/file/**
+  #文件上传目录
+  uploadFolder: E://scu-uploadFiles/
+#  uploadFolder: /root/scu-uploadFiles/
