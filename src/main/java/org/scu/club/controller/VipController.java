@@ -97,7 +97,7 @@ public class VipController extends BaseController {
     if (roleInfo instanceof ClubAdmin) {
       ClubAdmin clubAdmin = (ClubAdmin)roleInfo;
       int result = clubService.RecruitVips(clubAdmin.getClubId(), studentId);
-      response(result, null);
+      return response(result, null);
     }
     return FORBIDDEN;
   }
