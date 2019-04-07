@@ -26,6 +26,22 @@
       activity.result_title title
     FROM
       activity
+    WHERE
+      activity.result_image IS NOT NULL,
+    AND activity.result_content IS NOT NULL,
+    AND activity.result_title IS NOT NULL
     limit #{startRecord}, #{endRecord}
+  </select>
+
+  <select id="count" parameterType="org.scu.activity.vo.QActivityResult"
+    resultType="long">
+    SELECT
+    count(1)
+    FROM
+      activity
+    WHERE
+      activity.result_image IS NOT NULL,
+    AND activity.result_content IS NOT NULL,
+    AND activity.result_title IS NOT NULL
   </select>
 </mapper>
