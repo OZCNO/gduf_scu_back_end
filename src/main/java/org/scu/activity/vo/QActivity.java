@@ -17,6 +17,8 @@ public class QActivity extends Pagination {
 
   private Integer StudentId;
 
+  private Integer commitResult;
+
   public Integer getStudentId() {
     return StudentId;
   }
@@ -55,5 +57,13 @@ public class QActivity extends Pagination {
 
   public void setUserId(Long userId) {
     this.userId = userId;
+  }
+
+  public Integer getCommitResult() {
+    return commitResult;
+  }
+
+  public void setCommitResult(Integer commitResult) {
+    this.commitResult = commitResult;
   }
 }

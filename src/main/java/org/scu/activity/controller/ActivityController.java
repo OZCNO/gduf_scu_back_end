@@ -78,6 +78,7 @@ public class ActivityController extends BaseController {
       HttpServletRequest request,
       @RequestParam(required = false) Integer status,
       @RequestParam(required = false) Integer clubId,
+      @RequestParam(required = false) Integer commitResult,
       @RequestParam(required = false, defaultValue = "1") long page,
       @RequestParam(required = false, defaultValue = "10") long pageSize) {
     User loginUser = getLoginUser(request);
@@ -85,6 +86,7 @@ public class ActivityController extends BaseController {
     if (status != null) {
       search.setStatus(status);
     }
+    search.setCommitResult(commitResult);//是否提交活动成果
     search.setPage(page);
     search.setPageSize(pageSize);
     List<VActivity> list;

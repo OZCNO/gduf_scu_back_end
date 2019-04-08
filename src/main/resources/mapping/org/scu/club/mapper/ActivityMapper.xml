@@ -61,6 +61,11 @@
       AND user_id = #{userId}
       AND club.id = club_admin.club_id
     </if>
+    <if test="commitResult != null">
+      AND activity.result_image IS NULL
+      AND activity.result_content IS NULL
+      AND activity.result_title IS NULL
+    </if>
     limit #{startRecord}, #{endRecord}
   </select>
 
@@ -75,6 +80,11 @@
     AND `type` = 1
     <if test="status != null">
       AND audit_states = #{status}
+    </if>
+    <if test="commitResult != null">
+      AND activity.result_image IS NULL
+      AND activity.result_content IS NULL
+      AND activity.result_title IS NULL
     </if>
     limit #{startRecord}, #{endRecord}
   </select>
@@ -97,6 +107,11 @@
       AND user_id = #{userId}
       AND club.id = club_admin.club_id
     </if>
+    <if test="commitResult != null">
+      AND activity.result_image IS NULL
+      AND activity.result_content IS NULL
+      AND activity.result_title IS NULL
+    </if>
   </select>
 
   <select id="countUnionActivities" parameterType="org.scu.activity.vo.QActivity" resultType="int">
@@ -107,6 +122,11 @@
     1=1
     AND club_union_id = `union`.id
     AND `type` = 1
+    <if test="commitResult != null">
+      AND activity.result_image IS NULL
+      AND activity.result_content IS NULL
+      AND activity.result_title IS NULL
+    </if>
   </select>
 
   <insert id="insert" useGeneratedKeys="true" keyProperty="id">
