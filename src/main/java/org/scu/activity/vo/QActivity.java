@@ -7,7 +7,7 @@ import org.scu.base.vo.Pagination;
  */
 public class QActivity extends Pagination {
 
-  private int status;
+  private Integer status;
 
   private Long userId;
 
@@ -41,11 +41,11 @@ public class QActivity extends Pagination {
     this.clubId = clubId;
   }
 
-  public int getStatus() {
+  public Integer getStatus() {
     return status;
   }
 
-  public void setStatus(int status) {
+  public void setStatus(Integer status) {
     this.status = status;
   }
 
