@@ -41,28 +41,29 @@ public class ScuWebMvcConfigurer extends WebMvcConfigurationSupport {
 
     // add auth interceptor
     registry.addInterceptor(authInterceptor)
-            .excludePathPatterns("/login",
-                                 "/reg",
-                                 "/swagger-resources/**",
-                                 "/webjars/**",
-                                 "/v2/**",
-                                 "/swagger-ui.html**")
-            .addPathPatterns("/**");
+        .excludePathPatterns("/login",
+            "/reg",
+            "/swagger-resources/**",
+            "/webjars/**",
+            "/v2/**",
+            "/swagger-ui.html**",
+            staticAccessPath,
+            "/img")
+        .addPathPatterns("/**");
   }
 
   /**
-   * @param converters
-   *   http message converters
+   * @param converters http message converters
    */
   @Override
   public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
     FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
     FastJsonConfig fastJsonConfig = new FastJsonConfig();
     fastJsonConfig.setSerializerFeatures(SerializerFeature.WriteNullListAsEmpty,
-                                         SerializerFeature.WriteMapNullValue,
-                                         SerializerFeature.WriteDateUseDateFormat,
-                                         SerializerFeature.WriteNullStringAsEmpty,
-                                         SerializerFeature.WriteNullBooleanAsFalse);
+        SerializerFeature.WriteMapNullValue,
+        SerializerFeature.WriteDateUseDateFormat,
+        SerializerFeature.WriteNullStringAsEmpty,
+        SerializerFeature.WriteNullBooleanAsFalse);
     converter.setFastJsonConfig(fastJsonConfig);
     converters.add(converter);
   }
@@ -71,9 +72,9 @@ public class ScuWebMvcConfigurer extends WebMvcConfigurationSupport {
   public void addResourceHandlers(ResourceHandlerRegistry registry) {
     // add swagger resources handlers
     registry.addResourceHandler("swagger-ui.html")
-            .addResourceLocations("classpath:/META-INF/resources/");
+        .addResourceLocations("classpath:/META-INF/resources/");
     registry.addResourceHandler("/webjars/**")
-            .addResourceLocations("classpath:/META-INF/resources/webjars/");
+        .addResourceLocations("classpath:/META-INF/resources/webjars/");
     registry.addResourceHandler(staticAccessPath).addResourceLocations("file:" + uploadFolder);
   }
 }
