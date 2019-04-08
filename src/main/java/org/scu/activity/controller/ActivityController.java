@@ -176,7 +176,7 @@ public class ActivityController extends BaseController {
       @RequestParam(required = false, defaultValue = "10") long pageSize) {
     User loginUser = getLoginUser(request);
     int role = loginUser.getRole().intValue();
-    System.out.println("============"+role);
+//    System.out.println("============"+role);
     QActivity search = new QActivity();
     if (role == UserRole.CLUB_ADMIN.getCode() || role == UserRole.UNION_ADMIN.getCode()) {
       search.setUserId(loginUser.getId());
