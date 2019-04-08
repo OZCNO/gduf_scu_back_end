@@ -132,7 +132,7 @@ public class StudentServiceImpl implements StudentService {
         // recruit activity
         int result = studentMapper.joinActivity(item);
         if (result > 0) {
-          item.setStatus(ActivityStatus.UNDER_REVIEW.getCode());
+          item.setStatus(0);
           return studentMapper.joinClub(item);
         }
       } else {
